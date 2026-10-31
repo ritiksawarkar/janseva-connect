@@ -4,19 +4,26 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 15000,
   headers: {
     "Content-Type": "application/json"
   }
 });
 
-// Intercept requests to add JWT token (checks officerToken for officer routes or adminToken)
+// Intercept requests to add appropriate JWT token based on context
 api.interceptors.request.use(
   (config) => {
-    const isOfficerRequest = config.url && config.url.includes("/officer");
-    const officerToken = localStorage.getItem("officerToken");
-    const adminToken = localStorage.getItem("adminToken");
-    const token = isOfficerRequest ? (officerToken || adminToken) : (adminToken || officerToken);
-    
+    const url = config.url || "";
+    let token = null;
+
+    if (url.includes("/officer")) {
+      token = localStorage.getItem("officerToken") || localStorage.getItem("adminToken") || localStorage.getItem("janseva_token");
+    } else if (url.includes("/admin")) {
+      token = localStorage.getItem("adminToken") || localStorage.getItem("officerToken") || localStorage.getItem("janseva_token");
+    } else {
+      token = localStorage.getItem("janseva_token") || localStorage.getItem("officerToken") || localStorage.getItem("adminToken");
+    }
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -25,19 +32,39 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Intercept responses for auth handling
+// Intercept responses for universal compatibility across Member 1, 3, and 4
 api.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    const body = response.data;
+    if (body && typeof body === "object") {
+      // Ensure res.data is always present if caller accesses res.data
+      if (!("data" in body) || body.data === undefined) {
+        body.data = body;
+      } else if (body.data && typeof body.data === "object") {
+        if (!("success" in body.data)) {
+          body.data.success = body.success;
+        }
+        if (!("data" in body.data)) {
+          body.data.data = body.data;
+        }
+      }
+    }
+    return body;
+  },
   (error) => {
     if (error.response && error.response.status === 401) {
-      if (window.location.pathname.startsWith("/officer") && !window.location.pathname.includes("/officer/login")) {
+      const path = window.location.pathname;
+      if (path.startsWith("/officer") && !path.includes("/officer/login")) {
         localStorage.removeItem("officerToken");
         localStorage.removeItem("officerUser");
         window.location.href = "/officer/login?expired=true";
-      } else if (!window.location.pathname.includes("/admin/login") && !window.location.pathname.startsWith("/officer")) {
+      } else if (path.startsWith("/admin") && !path.includes("/admin/login")) {
         localStorage.removeItem("adminToken");
         localStorage.removeItem("adminUser");
         window.location.href = "/admin/login?expired=true";
+      } else if (path.startsWith("/citizen") && !path.includes("/login")) {
+        localStorage.removeItem("janseva_token");
+        localStorage.removeItem("janseva_user");
       }
     }
     return Promise.reject(error.response ? error.response.data : error);

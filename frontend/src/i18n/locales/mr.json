@@ -1,0 +1,71 @@
+{
+  "app": {
+    "name": "जनसेवा कनेक्ट",
+    "tagline": "सुलभ सार्वजनिक सेवा आणि तक्रार निवारण पोर्टल"
+  },
+  "nav": {
+    "dashboard": "डॅशबोर्ड",
+    "myComplaints": "माझ्या तक्रारी",
+    "submitComplaint": "तक्रार नोंदवा",
+    "nearbyComplaints": "परिसरातील तक्रारी",
+    "joinedComplaints": "पाठिंबा दिलेल्या तक्रारी",
+    "trackComplaint": "स्थिती तपासा",
+    "publicServices": "सार्वजनिक सेवा",
+    "governmentSchemes": "शासकीय योजना",
+    "login": "साइन इन",
+    "logout": "साइन आउट",
+    "profile": "प्रोफाइल"
+  },
+  "stats": {
+    "total": "एकूण तक्रारी",
+    "pending": "प्रलंबित",
+    "underVerification": "पडताळणी सुरू",
+    "assigned": "विभागाकडे वर्ग",
+    "inProgress": "काम सुरू आहे",
+    "resolutionSubmitted": "निवारण सादर",
+    "resolved": "निवारण झाले",
+    "joined": "पाठिंबा दिलेल्या"
+  },
+  "status": {
+    "SUBMITTED": "नोंदणी झाली",
+    "UNDER_VERIFICATION": "पडताळणी सुरू",
+    "VERIFIED": "पडताळणी पूर्ण",
+    "ASSIGNED": "विभागाकडे वर्ग",
+    "ACCEPTED": "अधिकाऱ्याने स्वीकारली",
+    "IN_PROGRESS": "काम प्रगतीपथावर",
+    "RESOLUTION_SUBMITTED": "निवारण सादर",
+    "RESOLVED": "यशस्वीरित्या निवारण झाले",
+    "REJECTED": "नाकारली",
+    "NEEDS_INFORMATION": "माहिती आवश्यक",
+    "REASSIGNED": "पुन्हा वर्ग केली",
+    "ESCALATED": "वरिष्ठांकडे वर्ग",
+    "REOPENED": "पुन्हा उघडली"
+  },
+  "priority": {
+    "LOW": "कमी",
+    "MEDIUM": "मध्यम",
+    "HIGH": "जास्त",
+    "EMERGENCY": "तातडीची / आपत्कालीन"
+  },
+  "actions": {
+    "submit": "तक्रार सादर करा",
+    "join": "तक्रारीला पाठिंबा द्या",
+    "joined": "पाठिंबा दिला",
+    "leave": "पाठिंबा मागे घ्या",
+    "viewDetails": "तपशील पहा",
+    "track": "तपासा",
+    "filter": "फिल्टर",
+    "search": "शोधा",
+    "reset": "पूर्ववत करा",
+    "cancel": "रद्द करा",
+    "confirm": "निश्चित करा",
+    "useGps": "चालू जीपीएस स्थान वापरा",
+    "findNearby": "परिसरातील तक्रारी शोधा"
+  },
+  "community": {
+    "supporters": "समर्थक",
+    "oneProblemOneComplaint": "एक समस्या → एक मुख्य तक्रार → अनेक नागरिक समर्थक",
+    "similarNotice": "या परिसरामध्ये आधीच सक्रिय तक्रारी आढळल्या आहेत. तुम्ही अस्तित्वात असलेल्या तक्रारीला पाठिंबा देऊ शकता किंवा नवीन तक्रार नोंदवू शकता."
+  }
+}
+

@@ -1,4 +1,4 @@
-export function requireRole(...allowedRoles) {
+export const requireRole = (...allowedRoles) => {
   return (req, res, next) => {
     if (!req.user) {
       return res.status(401).json({
@@ -16,7 +16,8 @@ export function requireRole(...allowedRoles) {
 
     next();
   };
-}
+};
 
 export const requireAdmin = requireRole("ADMIN");
 export const requireOfficer = requireRole("DEPARTMENT_OFFICER");
+export const requireCitizen = requireRole("CITIZEN");

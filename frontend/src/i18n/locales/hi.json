@@ -1,0 +1,71 @@
+{
+  "app": {
+    "name": "जनसेवा कनेक्ट",
+    "tagline": "सुलभ सार्वजनिक सेवाएं और शिकायत निवारण पोर्टल"
+  },
+  "nav": {
+    "dashboard": "डैशबोर्ड",
+    "myComplaints": "मेरी शिकायतें",
+    "submitComplaint": "शिकायत दर्ज करें",
+    "nearbyComplaints": "आस-पास की शिकायतें",
+    "joinedComplaints": "समर्थित शिकायतें",
+    "trackComplaint": "स्थिति ट्रैक करें",
+    "publicServices": "सार्वजनिक सेवाएं",
+    "governmentSchemes": "सरकारी योजनाएं",
+    "login": "साइन इन",
+    "logout": "साइन आउट",
+    "profile": "प्रोफ़ाइल"
+  },
+  "stats": {
+    "total": "कुल शिकायतें",
+    "pending": "लंबित",
+    "underVerification": "सत्यापन में",
+    "assigned": "विभाग को आवंटित",
+    "inProgress": "कार्य प्रगति पर",
+    "resolutionSubmitted": "निवारण प्रस्तुत",
+    "resolved": "निराकृत",
+    "joined": "मेरे द्वारा समर्थित"
+  },
+  "status": {
+    "SUBMITTED": "दर्ज की गई",
+    "UNDER_VERIFICATION": "सत्यापन में",
+    "VERIFIED": "सत्यापित",
+    "ASSIGNED": "विभाग को आवंटित",
+    "ACCEPTED": "अधिकारी द्वारा स्वीकृत",
+    "IN_PROGRESS": "कार्य प्रगति पर",
+    "RESOLUTION_SUBMITTED": "समाधान प्रस्तुत",
+    "RESOLVED": "सफलतापूर्वक निराकृत",
+    "REJECTED": "अस्वीकृत",
+    "NEEDS_INFORMATION": "अतिरिक्त जानकारी अपेक्षित",
+    "REASSIGNED": "पुनः आवंटित",
+    "ESCALATED": "उच्चाधिकारी को प्रेषित",
+    "REOPENED": "पुनः खोली गई"
+  },
+  "priority": {
+    "LOW": "कम",
+    "MEDIUM": "मध्यम",
+    "HIGH": "उच्च",
+    "EMERGENCY": "आपातकालीन"
+  },
+  "actions": {
+    "submit": "शिकायत जमा करें",
+    "join": "शिकायत का समर्थन करें",
+    "joined": "समर्थित",
+    "leave": "समर्थन वापस लें",
+    "viewDetails": "विवरण देखें",
+    "track": "ट्रैक करें",
+    "filter": "फ़िल्टर",
+    "search": "खोजें",
+    "reset": "रीसेट",
+    "cancel": "रद्द करें",
+    "confirm": "पुष्टि करें",
+    "useGps": "वर्तमान जीपीएस स्थान का उपयोग करें",
+    "findNearby": "निकटवर्ती शिकायतें खोजें"
+  },
+  "community": {
+    "supporters": "समर्थक",
+    "oneProblemOneComplaint": "एक समस्या → एक मुख्य शिकायत → कई नागरिक समर्थक",
+    "similarNotice": "इस स्थान के पास पहले से सक्रिय शिकायतें मिली हैं। आप उसी समस्या का समर्थन कर सकते हैं या नई शिकायत दर्ज कर सकते हैं।"
+  }
+}
+
