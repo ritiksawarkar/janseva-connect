@@ -1,0 +1,1265 @@
+import bcrypt from "bcryptjs";
+
+// Master initial dataset used for both SQL seeding and in-memory mock fallback
+export async function getSeedData() {
+  const defaultPasswordHash = await bcrypt.hash("Admin@123", 10);
+  const citizenPasswordHash = await bcrypt.hash("Citizen@123", 10);
+  const officerPasswordHash = await bcrypt.hash("Officer@123", 10);
+
+  const users = [
+    {
+      id: 1,
+      full_name: "Super Administrator",
+      email: "admin@janseva.gov.in",
+      phone: "+91 9876543210",
+      password_hash: defaultPasswordHash,
+      role: "ADMIN",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: "Chief Platform Administrator",
+      created_at: "2026-01-10T10:00:00Z",
+      updated_at: "2026-01-10T10:00:00Z"
+    },
+    {
+      id: 2,
+      full_name: "Rajesh Kumar (Sanitation Officer)",
+      email: "officer.sanitation@janseva.gov.in",
+      phone: "+91 9876543211",
+      password_hash: officerPasswordHash,
+      role: "DEPARTMENT_OFFICER",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: "Assigned to Ward 4 & 5",
+      created_at: "2026-01-15T11:00:00Z",
+      updated_at: "2026-01-15T11:00:00Z"
+    },
+    {
+      id: 3,
+      full_name: "Sunil Shinde (PWD Engineer)",
+      email: "officer.pwd@janseva.gov.in",
+      phone: "+91 9876543212",
+      password_hash: officerPasswordHash,
+      role: "DEPARTMENT_OFFICER",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: "Road & Pavement Division",
+      created_at: "2026-01-15T11:30:00Z",
+      updated_at: "2026-01-15T11:30:00Z"
+    },
+    {
+      id: 4,
+      full_name: "Meena Iyer (Water Supply Inspector)",
+      email: "officer.water@janseva.gov.in",
+      phone: "+91 9876543213",
+      password_hash: officerPasswordHash,
+      role: "DEPARTMENT_OFFICER",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: "Pipeline & Distribution unit",
+      created_at: "2026-01-16T09:15:00Z",
+      updated_at: "2026-01-16T09:15:00Z"
+    },
+    {
+      id: 5,
+      full_name: "Vikas Joshi (Electrical Assistant)",
+      email: "officer.electrical@janseva.gov.in",
+      phone: "+91 9876543214",
+      password_hash: officerPasswordHash,
+      role: "DEPARTMENT_OFFICER",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: "Street Lighting grid inspector",
+      created_at: "2026-01-16T10:00:00Z",
+      updated_at: "2026-01-16T10:00:00Z"
+    },
+    {
+      id: 6,
+      full_name: "Rahul Sharma",
+      email: "rahul.sharma@example.com",
+      phone: "+91 9820011223",
+      password_hash: citizenPasswordHash,
+      role: "CITIZEN",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: "Active civic participant",
+      created_at: "2026-02-01T08:30:00Z",
+      updated_at: "2026-02-01T08:30:00Z"
+    },
+    {
+      id: 7,
+      full_name: "Priya Patel",
+      email: "priya.patel@example.com",
+      phone: "+91 9820022334",
+      password_hash: citizenPasswordHash,
+      role: "CITIZEN",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: null,
+      created_at: "2026-02-05T14:20:00Z",
+      updated_at: "2026-02-05T14:20:00Z"
+    },
+    {
+      id: 8,
+      full_name: "Amit Verma",
+      email: "amit.verma@example.com",
+      phone: "+91 9820033445",
+      password_hash: citizenPasswordHash,
+      role: "CITIZEN",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: null,
+      created_at: "2026-02-10T12:00:00Z",
+      updated_at: "2026-02-10T12:00:00Z"
+    },
+    {
+      id: 9,
+      full_name: "Anita Deshmukh",
+      email: "anita.deshmukh@example.com",
+      phone: "+91 9820044556",
+      password_hash: citizenPasswordHash,
+      role: "CITIZEN",
+      status: "ACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: null,
+      created_at: "2026-02-15T16:45:00Z",
+      updated_at: "2026-02-15T16:45:00Z"
+    },
+    {
+      id: 10,
+      full_name: "Suresh Kumar",
+      email: "suresh.kumar@example.com",
+      phone: "+91 9820055667",
+      password_hash: citizenPasswordHash,
+      role: "CITIZEN",
+      status: "FLAGGED",
+      is_flagged: true,
+      flag_reason: "Multiple duplicate complaints submitted in short duration",
+      admin_remarks: "Account flagged for review by admin on 2026-02-28",
+      created_at: "2026-02-20T09:10:00Z",
+      updated_at: "2026-02-28T11:00:00Z"
+    },
+    {
+      id: 11,
+      full_name: "Sunita Rao",
+      email: "sunita.rao@example.com",
+      phone: "+91 9820066778",
+      password_hash: citizenPasswordHash,
+      role: "CITIZEN",
+      status: "INACTIVE",
+      is_flagged: false,
+      flag_reason: null,
+      admin_remarks: "Deactivated on user request",
+      created_at: "2026-02-22T10:30:00Z",
+      updated_at: "2026-03-01T15:20:00Z"
+    }
+  ];
+
+  const departments = [
+    {
+      id: 1,
+      name: "Solid Waste & Sanitation Department",
+      code: "SWM-01",
+      description: "Responsible for municipal garbage collection, street sweeping, dump yards, and hygiene.",
+      email: "sanitation@janseva.gov.in",
+      phone: "+91 022 24567801",
+      address: "Civic Centre, Floor 2, Zone West",
+      responsible_categories: ["Garbage", "Sanitation", "Illegal Dumping", "Public Toilets"],
+      status: "ACTIVE",
+      created_at: "2026-01-01T00:00:00Z",
+      updated_at: "2026-01-01T00:00:00Z"
+    },
+    {
+      id: 2,
+      name: "Public Works Department (PWD)",
+      code: "PWD-02",
+      description: "Responsible for road maintenance, potholes, pedestrian footpaths, and public infrastructure.",
+      email: "pwd@janseva.gov.in",
+      phone: "+91 022 24567802",
+      address: "PWD Complex, Station Road",
+      responsible_categories: ["Potholes", "Road Damage", "Footpath", "Bridge Maintenance"],
+      status: "ACTIVE",
+      created_at: "2026-01-01T00:00:00Z",
+      updated_at: "2026-01-01T00:00:00Z"
+    },
+    {
+      id: 3,
+      name: "Water Supply & Sewerage Board",
+      code: "WTR-03",
+      description: "Handles potable drinking water supply, pipeline leakages, low pressure, and sewage pipelines.",
+      email: "watersupply@janseva.gov.in",
+      phone: "+91 022 24567803",
+      address: "Jal Bhavan, Central Reservoir",
+      responsible_categories: ["Water Leakage", "Contaminated Water", "No Water Supply", "Sewerage"],
+      status: "ACTIVE",
+      created_at: "2026-01-01T00:00:00Z",
+      updated_at: "2026-01-01T00:00:00Z"
+    },
+    {
+      id: 4,
+      name: "Electrical & Street Lighting Department",
+      code: "ELEC-04",
+      description: "Maintains streetlight poles, transformer safety, high tension wires, and public lighting.",
+      email: "electrical@janseva.gov.in",
+      phone: "+91 022 24567804",
+      address: "Urja Bhavan, Sector 12",
+      responsible_categories: ["Streetlight", "Exposed Wire", "Power Outage", "Transformer Issue"],
+      status: "ACTIVE",
+      created_at: "2026-01-01T00:00:00Z",
+      updated_at: "2026-01-01T00:00:00Z"
+    },
+    {
+      id: 5,
+      name: "Storm Water Drainage & Flood Control",
+      code: "DRN-05",
+      description: "Manages open nullahs, stormwater drains, monsoon desilting, and waterlogging spots.",
+      email: "drainage@janseva.gov.in",
+      phone: "+91 022 24567805",
+      address: "Disaster Cell, Ground Floor",
+      responsible_categories: ["Drainage", "Clogged Drain", "Waterlogging", "Manhole Cover"],
+      status: "ACTIVE",
+      created_at: "2026-01-01T00:00:00Z",
+      updated_at: "2026-01-01T00:00:00Z"
+    }
+  ];
+
+  const officers = [
+    {
+      id: 1,
+      user_id: 2,
+      employee_id: "EMP-SWM-101",
+      department_id: 1,
+      designation: "Assistant Sanitation Officer",
+      status: "ACTIVE",
+      created_at: "2026-01-15T11:00:00Z",
+      updated_at: "2026-01-15T11:00:00Z"
+    },
+    {
+      id: 2,
+      user_id: 3,
+      employee_id: "EMP-PWD-204",
+      department_id: 2,
+      designation: "Junior Civil Engineer",
+      status: "ACTIVE",
+      created_at: "2026-01-15T11:30:00Z",
+      updated_at: "2026-01-15T11:30:00Z"
+    },
+    {
+      id: 3,
+      user_id: 4,
+      employee_id: "EMP-WTR-305",
+      department_id: 3,
+      designation: "Zonal Water Inspector",
+      status: "ACTIVE",
+      created_at: "2026-01-16T09:15:00Z",
+      updated_at: "2026-01-16T09:15:00Z"
+    },
+    {
+      id: 4,
+      user_id: 5,
+      employee_id: "EMP-ELC-409",
+      department_id: 4,
+      designation: "Sub-Station Maintenance Engineer",
+      status: "ACTIVE",
+      created_at: "2026-01-16T10:00:00Z",
+      updated_at: "2026-01-16T10:00:00Z"
+    }
+  ];
+
+  const complaints = [
+    {
+      id: 1,
+      tracking_id: "GRV-2026-0001",
+      citizen_id: 6,
+      title: "Severe garbage overflow near MG Road community market",
+      description: "Large dump of uncollected municipal waste blocking sidewalk for 4 days. Stench and health hazard for vegetable market shoppers.",
+      category: "Garbage",
+      location: "MG Road, Ward 4, Near Gandhi Market",
+      latitude: 19.0760,
+      longitude: 72.8777,
+      evidence_urls: ["https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=600"],
+      status: "SUBMITTED",
+      priority: "HIGH",
+      department_id: null,
+      assigned_officer_id: null,
+      verification_remarks: null,
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 14,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-03-01T08:15:00Z",
+      updated_at: "2026-03-01T08:15:00Z"
+    },
+    {
+      id: 2,
+      tracking_id: "GRV-2026-0002",
+      citizen_id: 7,
+      title: "Dangerous open pothole on Station Approach Bridge",
+      description: "Deep pothole measuring approximately 2.5 feet diameter right at the bridge descent. Two motorbikes skidded yesterday.",
+      category: "Potholes",
+      location: "Station Approach Flyover, Pier No. 12",
+      latitude: 19.0820,
+      longitude: 72.8850,
+      evidence_urls: ["https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=600"],
+      status: "UNDER_VERIFICATION",
+      priority: "EMERGENCY",
+      department_id: null,
+      assigned_officer_id: null,
+      verification_remarks: "Under review by admin desk for emergency road patch team dispatch.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 32,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-03-01T09:00:00Z",
+      updated_at: "2026-03-01T09:45:00Z"
+    },
+    {
+      id: 3,
+      tracking_id: "GRV-2026-0003",
+      citizen_id: 8,
+      title: "Drinking water pipeline rupture leaking on main street",
+      description: "Clean potable water spewing onto the street since early morning. Low pressure in adjacent residential societies.",
+      category: "Water Leakage",
+      location: "Cross Road 3, Sector 8, Near Shivaji Garden",
+      latitude: 19.0650,
+      longitude: 72.8640,
+      evidence_urls: ["https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=600"],
+      status: "VERIFIED",
+      priority: "HIGH",
+      department_id: 3,
+      assigned_officer_id: null,
+      verification_remarks: "Verified authentic through photo evidence and citizen cluster report.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 8,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-28T07:30:00Z",
+      updated_at: "2026-02-28T10:00:00Z"
+    },
+    {
+      id: 4,
+      tracking_id: "GRV-2026-0004",
+      citizen_id: 9,
+      title: "Broken streetlight pole and non-functional lamps for 2 weeks",
+      description: "Entire stretch of 200 meters pitch dark at night. Unsafe for women and elderly walking from metro station.",
+      category: "Streetlight",
+      location: "Subhash Nagar Lane 5, Outskirts",
+      latitude: 19.0900,
+      longitude: 72.8900,
+      evidence_urls: ["https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=600"],
+      status: "ASSIGNED",
+      priority: "MEDIUM",
+      department_id: 4,
+      assigned_officer_id: 5,
+      verification_remarks: "Verified. Assigned to Electrical Maintenance team.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 19,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-27T14:00:00Z",
+      updated_at: "2026-02-28T09:30:00Z"
+    },
+    {
+      id: 5,
+      tracking_id: "GRV-2026-0005",
+      citizen_id: 6,
+      title: "Clogged storm drain causing foul stagnant pool",
+      description: "Plastic trash choking drain intake. Mosquito breeding in standing water near primary school.",
+      category: "Drainage",
+      location: "Opposite Adarsh Vidya Mandir, School Road",
+      latitude: 19.0720,
+      longitude: 72.8710,
+      evidence_urls: [],
+      status: "IN_PROGRESS",
+      priority: "HIGH",
+      department_id: 5,
+      assigned_officer_id: 2,
+      verification_remarks: "Verified. Desilting crew dispatched.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 27,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-26T11:00:00Z",
+      updated_at: "2026-02-27T08:00:00Z"
+    },
+    {
+      id: 6,
+      tracking_id: "GRV-2026-0006",
+      citizen_id: 7,
+      title: "Hazardous open manhole cover missing on main footpath",
+      description: "Concrete cover damaged during cabling work, hole left exposed with just a wooden twig. Immediate accident threat.",
+      category: "Drainage",
+      location: "Liberty Cinema Junction, Footpath North",
+      latitude: 19.0790,
+      longitude: 72.8800,
+      evidence_urls: ["https://images.unsplash.com/photo-1541888946425-d0fbb18f156f?w=600"],
+      status: "ESCALATED",
+      priority: "EMERGENCY",
+      department_id: 5,
+      assigned_officer_id: 3,
+      verification_remarks: "High priority safety issue.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: true,
+      supporters_count: 45,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-24T06:00:00Z",
+      updated_at: "2026-02-26T12:00:00Z"
+    },
+    {
+      id: 7,
+      tracking_id: "GRV-2026-0007",
+      citizen_id: 8,
+      title: "Commercial dump of construction debris on public playground",
+      description: "Debris dumped by private contractor on public park grounds. Children unable to use football field.",
+      category: "Garbage",
+      location: "Shivaji Park Annexe, Western Gate",
+      latitude: 19.0680,
+      longitude: 72.8690,
+      evidence_urls: [],
+      status: "RESOLVED",
+      priority: "MEDIUM",
+      department_id: 1,
+      assigned_officer_id: 2,
+      verification_remarks: "Verified and assigned.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 52,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: "2026-02-27T17:00:00Z",
+      created_at: "2026-02-22T10:00:00Z",
+      updated_at: "2026-02-27T17:00:00Z"
+    },
+    {
+      id: 8,
+      tracking_id: "GRV-2026-0008",
+      citizen_id: 10,
+      title: "Vague report regarding noise disturbance",
+      description: "Noise somewhere in neighbourhood.",
+      category: "General Administration",
+      location: "Somewhere near sector 4",
+      latitude: null,
+      longitude: null,
+      evidence_urls: [],
+      status: "NEEDS_INFORMATION",
+      priority: "LOW",
+      department_id: null,
+      assigned_officer_id: null,
+      verification_remarks: null,
+      rejection_reason: null,
+      info_request_reason: "Please specify the exact address, timings, and nature of commercial/industrial disturbance.",
+      is_overdue: false,
+      supporters_count: 0,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-25T16:00:00Z",
+      updated_at: "2026-02-26T10:00:00Z"
+    },
+    {
+      id: 9,
+      tracking_id: "GRV-2026-0009",
+      citizen_id: 10,
+      title: "Private property dispute with neighbor",
+      description: "Neighbor built a flower pot terrace that crosses boundary line into my private balcony wall.",
+      category: "General Administration",
+      location: "Apartment 402, Sai Sagar Society",
+      latitude: 19.0750,
+      longitude: 72.8750,
+      evidence_urls: [],
+      status: "REJECTED",
+      priority: "LOW",
+      department_id: null,
+      assigned_officer_id: null,
+      verification_remarks: null,
+      rejection_reason: "Civil dispute on private residential premises. Out of municipal civic jurisdiction. Please consult civil court or local police station.",
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 0,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-24T12:00:00Z",
+      updated_at: "2026-02-25T09:15:00Z"
+    },
+    {
+      id: 10,
+      tracking_id: "GRV-2026-0010",
+      citizen_id: 6,
+      title: "Suspected duplicate report of garbage near Gandhi market",
+      description: "Garbage still present near vegetable market.",
+      category: "Garbage",
+      location: "MG Road Gandhi Market",
+      latitude: 19.0761,
+      longitude: 72.8778,
+      evidence_urls: [],
+      status: "SUBMITTED",
+      priority: "HIGH",
+      department_id: null,
+      assigned_officer_id: null,
+      verification_remarks: null,
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 3,
+      duplicate_warning: true,
+      similar_complaint_ids: [1],
+      resolved_at: null,
+      created_at: "2026-03-01T10:00:00Z",
+      updated_at: "2026-03-01T10:00:00Z"
+    }
+  ];
+
+  const complaintHistory = [
+    {
+      id: 1,
+      complaint_id: 1,
+      old_status: null,
+      new_status: "SUBMITTED",
+      changed_by: 6,
+      remarks: "Complaint filed by citizen Rahul Sharma via mobile portal.",
+      created_at: "2026-03-01T08:15:00Z"
+    },
+    {
+      id: 2,
+      complaint_id: 2,
+      old_status: "SUBMITTED",
+      new_status: "UNDER_VERIFICATION",
+      changed_by: 1,
+      remarks: "Admin initiated preliminary verification.",
+      created_at: "2026-03-01T09:45:00Z"
+    },
+    {
+      id: 3,
+      complaint_id: 3,
+      old_status: "UNDER_VERIFICATION",
+      new_status: "VERIFIED",
+      changed_by: 1,
+      remarks: "Complaint verified authentic by admin. Routing to Water Department recommended.",
+      created_at: "2026-02-28T10:00:00Z"
+    },
+    {
+      id: 4,
+      complaint_id: 4,
+      old_status: "VERIFIED",
+      new_status: "ASSIGNED",
+      changed_by: 1,
+      remarks: "Assigned to Electrical Department officer Vikas Joshi.",
+      created_at: "2026-02-28T09:30:00Z"
+    },
+    {
+      id: 5,
+      complaint_id: 5,
+      old_status: "ASSIGNED",
+      new_status: "IN_PROGRESS",
+      changed_by: 2,
+      remarks: "Field team deployed on site with suction pump.",
+      created_at: "2026-02-27T08:00:00Z"
+    },
+    {
+      id: 6,
+      complaint_id: 6,
+      old_status: "ASSIGNED",
+      new_status: "ESCALATED",
+      changed_by: 1,
+      remarks: "SLA timeline breached. Escalated to Department Supervisor for urgent inspection.",
+      created_at: "2026-02-26T12:00:00Z"
+    },
+    {
+      id: 7,
+      complaint_id: 7,
+      old_status: "IN_PROGRESS",
+      new_status: "RESOLVED",
+      changed_by: 2,
+      remarks: "Truck load of debris lifted and playground cleared. Photo evidence recorded.",
+      created_at: "2026-02-27T17:00:00Z"
+    }
+  ];
+
+  const assignments = [
+    {
+      id: 1,
+      complaint_id: 4,
+      department_id: 4,
+      officer_id: 5,
+      assigned_by: 1,
+      assignment_status: "ACTIVE",
+      remarks: "Priority streetlight repair before weekend.",
+      assigned_at: "2026-02-28T09:30:00Z",
+      reassigned_at: null
+    },
+    {
+      id: 2,
+      complaint_id: 5,
+      department_id: 5,
+      officer_id: 2,
+      assigned_by: 1,
+      assignment_status: "ACTIVE",
+      remarks: "Urgent desilting requested near school area.",
+      assigned_at: "2026-02-26T13:00:00Z",
+      reassigned_at: null
+    },
+    {
+      id: 3,
+      complaint_id: 6,
+      department_id: 5,
+      officer_id: 3,
+      assigned_by: 1,
+      assignment_status: "ACTIVE",
+      remarks: "Escalated assignment to senior engineer.",
+      assigned_at: "2026-02-24T08:00:00Z",
+      reassigned_at: null
+    },
+    {
+      id: 4,
+      complaint_id: 7,
+      department_id: 1,
+      officer_id: 2,
+      assigned_by: 1,
+      assignment_status: "COMPLETED",
+      remarks: "Debris removal action completed.",
+      assigned_at: "2026-02-22T11:00:00Z",
+      reassigned_at: null
+    }
+  ];
+
+  const publicServices = [
+    {
+      id: 1,
+      service_name: "Municipal Birth Certificate Issuance",
+      description: "Application for issuance of official birth certificate registered with municipal health department.",
+      category: "Health & Vital Statistics",
+      eligibility: "Parents or legal guardians of child born within municipal corporation jurisdiction.",
+      required_documents: ["Hospital discharge summary", "Parents Aadhaar cards", "Marriage registration copy"],
+      fees: "₹50 (First copy free within 21 days)",
+      application_steps: ["Submit online application", "Upload hospital slip", "Verification by Health Inspector", "Download digitally signed certificate"],
+      department_id: 1,
+      official_application_url: "https://serviceonline.gov.in/birth",
+      official_source_url: "https://mumbaicity.gov.in/citizen-services",
+      verification_status: "VERIFIED",
+      publication_status: "PUBLISHED",
+      current_version: 1,
+      created_at: "2026-01-20T10:00:00Z",
+      updated_at: "2026-01-20T10:00:00Z"
+    },
+    {
+      id: 2,
+      service_name: "New Domestic Potable Water Connection",
+      description: "Apply for a fresh 15mm or 20mm metered domestic drinking water connection line.",
+      category: "Water Supply",
+      eligibility: "Property owner or authorized tenant with valid occupancy certificate.",
+      required_documents: ["Proof of ownership / Index II", "Property tax latest receipt", "Sanctioned building plan"],
+      fees: "₹1,500 connection fee + meter cost",
+      application_steps: ["Apply online", "Field inspection by junior engineer", "Payment of connection charges", "Pipeline connection release"],
+      department_id: 3,
+      official_application_url: "https://aquatax.gov.in/new-connection",
+      official_source_url: "https://jaljeevanmission.gov.in",
+      verification_status: "VERIFIED",
+      publication_status: "PUBLISHED",
+      current_version: 1,
+      created_at: "2026-01-22T11:00:00Z",
+      updated_at: "2026-01-22T11:00:00Z"
+    },
+    {
+      id: 3,
+      service_name: "Pothole & Road Repair Request",
+      description: "Direct civic service to requisition asphalt patch-up or concrete filling of damaged municipal roads.",
+      category: "Public Works",
+      eligibility: "Any citizen resident or commuter within municipal boundaries.",
+      required_documents: ["Geo-tagged photograph of road damage"],
+      fees: "Free Public Service",
+      application_steps: ["Pin location on portal", "Upload photograph", "Auto-routed to PWD divisional engineer", "Work completed within SLA"],
+      department_id: 2,
+      official_application_url: "https://janseva.gov.in/services/road-repair",
+      official_source_url: "https://pwd.maharashtra.gov.in",
+      verification_status: "VERIFIED",
+      publication_status: "PUBLISHED",
+      current_version: 1,
+      created_at: "2026-01-25T14:00:00Z",
+      updated_at: "2026-01-25T14:00:00Z"
+    },
+    {
+      id: 4,
+      service_name: "Commercial Trade License Renewal",
+      description: "Annual renewal of municipal health and safety shop and establishment trade license.",
+      category: "General Administration",
+      eligibility: "Registered business establishments operating in commercial zones.",
+      required_documents: ["Existing Trade License copy", "Fire NOC", "Property tax clearance"],
+      fees: "₹2,000 to ₹10,000 depending on area",
+      application_steps: ["Verify existing license", "Upload clearances", "Pay online", "Certificate instant renewal"],
+      department_id: 1,
+      official_application_url: "https://tradelicense.gov.in",
+      official_source_url: "https://mcgm.gov.in",
+      verification_status: "PENDING",
+      publication_status: "DRAFT",
+      current_version: 1,
+      created_at: "2026-02-10T12:00:00Z",
+      updated_at: "2026-02-10T12:00:00Z"
+    }
+  ];
+
+  const serviceVersions = [
+    {
+      id: 1,
+      service_id: 1,
+      version_number: 1,
+      service_snapshot: publicServices[0],
+      source_url: "https://mumbaicity.gov.in/citizen-services",
+      updated_by: 1,
+      change_summary: "Initial verified service specification published.",
+      created_at: "2026-01-20T10:00:00Z"
+    },
+    {
+      id: 2,
+      service_id: 2,
+      version_number: 1,
+      service_snapshot: publicServices[1],
+      source_url: "https://jaljeevanmission.gov.in",
+      updated_by: 1,
+      change_summary: "Initial water connection standard operating procedure.",
+      created_at: "2026-01-22T11:00:00Z"
+    }
+  ];
+
+  const governmentSchemes = [
+    {
+      id: 1,
+      scheme_name: "Pradhan Mantri Awas Yojana (Urban)",
+      description: "Financial assistance and interest subsidy on home loans for urban poor and middle-income families for affordable housing.",
+      objectives: "Provide pucca houses with water, sanitation, and electricity to eligible urban families by promoting sustainable habitats.",
+      benefits: "Up to ₹2.67 Lakh interest subsidy on home loans (CLSS) or direct financial grant for construction.",
+      category: "Housing & Urban Development",
+      scheme_level: "CENTRAL",
+      state: "All India",
+      beneficiary_group: "EWS, LIG, and Middle Income Groups (MIG-I)",
+      eligibility_criteria: "Family should not own a pucca house in India. Annual household income up to ₹6 Lakh for EWS/LIG.",
+      structured_eligibility: {
+        min_age: 18,
+        max_age: 70,
+        max_annual_income: 600000,
+        gender: "ANY",
+        residence_type: "URBAN",
+        pucca_house_owned: false
+      },
+      required_documents: ["Aadhaar Card", "Income Certificate / Salary Slip", "Bank Account Details", "Affidavit of no pucca house"],
+      application_procedure: "Apply online through JanSeva Connect or PMAY portal. Verify Aadhaar, provide income details, and bank account.",
+      department_id: 2,
+      official_application_url: "https://pmaymis.gov.in",
+      official_source_url: "https://mohua.gov.in/pmay",
+      verification_status: "VERIFIED",
+      publication_status: "PUBLISHED",
+      current_version: 1,
+      created_at: "2026-01-15T09:00:00Z",
+      updated_at: "2026-01-15T09:00:00Z"
+    },
+    {
+      id: 2,
+      scheme_name: "Ayushman Bharat PM-JAY (Health Insurance)",
+      description: "World's largest government-funded healthcare assurance scheme offering secondary and tertiary hospitalization cover.",
+      objectives: "Protect vulnerable families against catastrophic medical expenditures and out-of-pocket health costs.",
+      benefits: "Cashless health insurance cover up to ₹5,00,000 per family per year for secondary and tertiary care hospitalization.",
+      category: "Healthcare & Family Welfare",
+      scheme_level: "CENTRAL",
+      state: "All India",
+      beneficiary_group: "Bottom 40% vulnerable and poor families identified as per SECC database.",
+      eligibility_criteria: "Household listed in SECC 2011 criteria or active Rashtriya Swasthya Bima Yojana (RSBY) cardholder.",
+      structured_eligibility: {
+        min_age: 0,
+        max_age: 120,
+        max_annual_income: 250000,
+        gender: "ANY",
+        secc_deprivation_listed: true
+      },
+      required_documents: ["Ration Card", "Aadhaar Card of all family members", "Income verification"],
+      application_procedure: "Check eligibility via JanSeva Connect portal. Visit empanelled hospital or CSC centre to generate Ayushman Card.",
+      department_id: 1,
+      official_application_url: "https://beneficiary.nha.gov.in",
+      official_source_url: "https://pmjay.gov.in",
+      verification_status: "VERIFIED",
+      publication_status: "PUBLISHED",
+      current_version: 1,
+      created_at: "2026-01-18T10:00:00Z",
+      updated_at: "2026-01-18T10:00:00Z"
+    },
+    {
+      id: 3,
+      scheme_name: "Sanjay Gandhi Niradhar Anudan Yojana",
+      description: "State pension scheme providing financial aid to destitute, disabled, widows, and vulnerable persons without support.",
+      objectives: "Social security net for elderly citizens, abandoned women, and persons with severe disabilities.",
+      benefits: "Monthly pension allowance of ₹1,500 transferred directly to bank account.",
+      category: "Social Justice & Empowerment",
+      scheme_level: "STATE",
+      state: "Maharashtra",
+      beneficiary_group: "Destitute elderly (65+), widows, physically disabled (40%+).",
+      eligibility_criteria: "Resident of Maharashtra for at least 15 years. Family annual income less than ₹21,000.",
+      structured_eligibility: {
+        min_age: 65,
+        max_age: 100,
+        max_annual_income: 21000,
+        state: "Maharashtra",
+        state_resident_years: 15
+      },
+      required_documents: ["Domicile Certificate of Maharashtra", "Income Certificate from Tahsildar", "Age proof / Birth certificate", "Disability certificate if applicable"],
+      application_procedure: "Submit form with income and domicile proofs to Tehsil office or online portal.",
+      department_id: 1,
+      official_application_url: "https://aaplesarkar.mahaonline.gov.in",
+      official_source_url: "https://sjsa.maharashtra.gov.in",
+      verification_status: "VERIFIED",
+      publication_status: "PUBLISHED",
+      current_version: 1,
+      created_at: "2026-01-25T11:00:00Z",
+      updated_at: "2026-01-25T11:00:00Z"
+    },
+    {
+      id: 4,
+      scheme_name: "PM SVANidhi (Street Vendor Micro-Credit)",
+      description: "Micro-credit scheme empowering urban street vendors with collateral-free working capital loans.",
+      objectives: "Re-establish urban livelihoods and promote digital payments among street hawkers.",
+      benefits: "Initial working capital loan of ₹10,000 with 7% interest subsidy on timely repayment, scaling to ₹20,000 and ₹50,000.",
+      category: "Livelihood & Small Enterprise",
+      scheme_level: "CENTRAL",
+      state: "All India",
+      beneficiary_group: "Urban street vendors vending in urban areas on or before March 24, 2020.",
+      eligibility_criteria: "Vendor must possess Certificate of Vending or Identity Card issued by Urban Local Body.",
+      structured_eligibility: {
+        min_age: 18,
+        max_age: 65,
+        max_annual_income: 300000,
+        vending_card_holder: true
+      },
+      required_documents: ["Vending ID Card / Recommendation Letter from ULB", "Aadhaar Card", "Bank passbook"],
+      application_procedure: "Apply via JanSeva Connect portal or PM SVANidhi web app.",
+      department_id: 1,
+      official_application_url: "https://pmsvanidhi.mohua.gov.in",
+      official_source_url: "https://mohua.gov.in",
+      verification_status: "PENDING",
+      publication_status: "DRAFT",
+      current_version: 1,
+      created_at: "2026-02-12T15:00:00Z",
+      updated_at: "2026-02-12T15:00:00Z"
+    }
+  ];
+
+  const schemeVersions = [
+    {
+      id: 1,
+      scheme_id: 1,
+      version_number: 1,
+      scheme_snapshot: governmentSchemes[0],
+      source_url: "https://mohua.gov.in/pmay",
+      updated_by: 1,
+      change_summary: "Baseline central scheme guidelines and eligibility criteria configured.",
+      created_at: "2026-01-15T09:00:00Z"
+    },
+    {
+      id: 2,
+      scheme_id: 2,
+      version_number: 1,
+      scheme_snapshot: governmentSchemes[1],
+      source_url: "https://pmjay.gov.in",
+      updated_by: 1,
+      change_summary: "Baseline health coverage rules integrated.",
+      created_at: "2026-01-18T10:00:00Z"
+    }
+  ];
+
+  const slaRules = [
+    {
+      id: 1,
+      name: "Emergency Public Safety Hazard Rule",
+      department_id: null,
+      category: "All",
+      priority: "EMERGENCY",
+      duration_value: 12,
+      duration_unit: "HOURS",
+      escalation_threshold: 75,
+      is_active: true,
+      created_at: "2026-01-10T10:00:00Z",
+      updated_at: "2026-01-10T10:00:00Z"
+    },
+    {
+      id: 2,
+      name: "High Priority Sanitation Resolution Rule",
+      department_id: 1,
+      category: "Garbage",
+      priority: "HIGH",
+      duration_value: 24,
+      duration_unit: "HOURS",
+      escalation_threshold: 80,
+      is_active: true,
+      created_at: "2026-01-10T10:00:00Z",
+      updated_at: "2026-01-10T10:00:00Z"
+    },
+    {
+      id: 3,
+      name: "PWD Pothole Standard Resolution Rule",
+      department_id: 2,
+      category: "Potholes",
+      priority: "MEDIUM",
+      duration_value: 72,
+      duration_unit: "HOURS",
+      escalation_threshold: 80,
+      is_active: true,
+      created_at: "2026-01-10T10:00:00Z",
+      updated_at: "2026-01-10T10:00:00Z"
+    },
+    {
+      id: 4,
+      name: "Water Leakage Urgent Repair Rule",
+      department_id: 3,
+      category: "Water Leakage",
+      priority: "HIGH",
+      duration_value: 24,
+      duration_unit: "HOURS",
+      escalation_threshold: 70,
+      is_active: true,
+      created_at: "2026-01-10T10:00:00Z",
+      updated_at: "2026-01-10T10:00:00Z"
+    },
+    {
+      id: 5,
+      name: "Streetlight Routine Maintenance Rule",
+      department_id: 4,
+      category: "Streetlight",
+      priority: "LOW",
+      duration_value: 7,
+      duration_unit: "DAYS",
+      escalation_threshold: 85,
+      is_active: true,
+      created_at: "2026-01-10T10:00:00Z",
+      updated_at: "2026-01-10T10:00:00Z"
+    }
+  ];
+
+  const complaintSla = [
+    {
+      id: 1,
+      complaint_id: 4,
+      sla_rule_id: 5,
+      started_at: "2026-02-28T09:30:00Z",
+      due_at: "2026-03-07T09:30:00Z",
+      completed_at: null,
+      sla_status: "RUNNING",
+      created_at: "2026-02-28T09:30:00Z"
+    },
+    {
+      id: 2,
+      complaint_id: 5,
+      sla_rule_id: 1,
+      started_at: "2026-02-27T08:00:00Z",
+      due_at: "2026-02-28T08:00:00Z",
+      completed_at: null,
+      sla_status: "BREACHED",
+      created_at: "2026-02-27T08:00:00Z"
+    },
+    {
+      id: 3,
+      complaint_id: 6,
+      sla_rule_id: 1,
+      started_at: "2026-02-24T08:00:00Z",
+      due_at: "2026-02-24T20:00:00Z",
+      completed_at: null,
+      sla_status: "BREACHED",
+      created_at: "2026-02-24T08:00:00Z"
+    },
+    {
+      id: 4,
+      complaint_id: 7,
+      sla_rule_id: 2,
+      started_at: "2026-02-22T11:00:00Z",
+      due_at: "2026-02-28T11:00:00Z",
+      completed_at: "2026-02-27T17:00:00Z",
+      sla_status: "COMPLIED",
+      created_at: "2026-02-22T11:00:00Z"
+    }
+  ];
+
+  const escalations = [
+    {
+      id: 1,
+      complaint_id: 6,
+      escalation_level: 2,
+      reason: "Emergency open manhole cover unresolved after 48 hours past SLA timeline.",
+      escalated_by: 1,
+      assigned_to: 3,
+      status: "OPEN",
+      remarks: "Urgent site inspection ordered by chief administrative officer.",
+      created_at: "2026-02-26T12:00:00Z",
+      resolved_at: null
+    },
+    {
+      id: 2,
+      complaint_id: 5,
+      escalation_level: 1,
+      reason: "School zone storm water blockage approaching overdue threshold.",
+      escalated_by: 1,
+      assigned_to: 2,
+      status: "INVESTIGATING",
+      remarks: "Special suction unit dispatched.",
+      created_at: "2026-02-28T09:00:00Z",
+      resolved_at: null
+    }
+  ];
+
+  const auditLogs = [
+    {
+      id: 1,
+      actor_id: 1,
+      actor_name: "Super Administrator",
+      actor_role: "ADMIN",
+      action: "CITIZEN_FLAGGED",
+      entity_type: "USER",
+      entity_id: "10",
+      old_values: { status: "ACTIVE", is_flagged: false },
+      new_values: { status: "FLAGGED", is_flagged: true, reason: "Duplicate submissions" },
+      ip_address: "127.0.0.1",
+      created_at: "2026-02-28T11:00:00Z"
+    },
+    {
+      id: 2,
+      actor_id: 1,
+      actor_name: "Super Administrator",
+      actor_role: "ADMIN",
+      action: "COMPLAINT_VERIFIED",
+      entity_type: "COMPLAINT",
+      entity_id: "3",
+      old_values: { status: "UNDER_VERIFICATION" },
+      new_values: { status: "VERIFIED", department_id: 3 },
+      ip_address: "127.0.0.1",
+      created_at: "2026-02-28T10:00:00Z"
+    },
+    {
+      id: 3,
+      actor_id: 1,
+      actor_name: "Super Administrator",
+      actor_role: "ADMIN",
+      action: "OFFICER_ASSIGNED",
+      entity_type: "COMPLAINT",
+      entity_id: "4",
+      old_values: { assigned_officer_id: null },
+      new_values: { assigned_officer_id: 5, department_id: 4 },
+      ip_address: "127.0.0.1",
+      created_at: "2026-02-28T09:30:00Z"
+    },
+    {
+      id: 4,
+      actor_id: 1,
+      actor_name: "Super Administrator",
+      actor_role: "ADMIN",
+      action: "COMPLAINT_ESCALATED",
+      entity_type: "COMPLAINT",
+      entity_id: "6",
+      old_values: { status: "ASSIGNED" },
+      new_values: { status: "ESCALATED", level: 2 },
+      ip_address: "127.0.0.1",
+      created_at: "2026-02-26T12:00:00Z"
+    },
+    {
+      id: 5,
+      actor_id: 1,
+      actor_name: "Super Administrator",
+      actor_role: "ADMIN",
+      action: "SERVICE_PUBLISHED",
+      entity_type: "PUBLIC_SERVICE",
+      entity_id: "1",
+      old_values: { publication_status: "DRAFT" },
+      new_values: { publication_status: "PUBLISHED" },
+      ip_address: "127.0.0.1",
+      created_at: "2026-01-20T10:00:00Z"
+    }
+  ];
+
+  const platformSettings = [
+    {
+      id: 1,
+      setting_key: "general_settings",
+      category: "GENERAL",
+      setting_value: {
+        platform_name: "JanSeva Connect",
+        platform_description: "Accessible Public Services & Grievance Resolution Portal",
+        support_email: "support@janseva.gov.in",
+        contact_phone: "1800-112-233",
+        default_language: "en",
+        timezone: "Asia/Kolkata",
+        office_address: "Central Grievance Redressal Cell, Mantralaya, Mumbai, Maharashtra 400032"
+      },
+      updated_by: 1,
+      updated_at: "2026-02-15T10:00:00Z"
+    },
+    {
+      id: 2,
+      setting_key: "language_settings",
+      category: "LANGUAGE",
+      setting_value: {
+        available_languages: ["en", "hi", "mr"],
+        default_language: "en",
+        enable_multi_language: true
+      },
+      updated_by: 1,
+      updated_at: "2026-02-15T10:00:00Z"
+    },
+    {
+      id: 3,
+      setting_key: "complaint_settings",
+      category: "COMPLAINT",
+      setting_value: {
+        allowed_attachment_types: ["image/jpeg", "image/png", "application/pdf"],
+        max_attachment_size_mb: 10,
+        supported_categories: [
+          "Garbage",
+          "Potholes",
+          "Water Leakage",
+          "Streetlight",
+          "Drainage",
+          "Public Health",
+          "Encroachment",
+          "General Administration"
+        ],
+        default_priority: "MEDIUM",
+        duplicate_distance_threshold_meters: 100
+      },
+      updated_by: 1,
+      updated_at: "2026-02-15T10:00:00Z"
+    },
+    {
+      id: 4,
+      setting_key: "security_settings",
+      category: "SECURITY",
+      setting_value: {
+        min_password_length: 8,
+        session_expiry_hours: 24,
+        max_login_attempts: 5,
+        lockout_duration_minutes: 15,
+        require_otp_citizen: true
+      },
+      updated_by: 1,
+      updated_at: "2026-02-15T10:00:00Z"
+    },
+    {
+      id: 5,
+      setting_key: "system_status",
+      category: "PLATFORM",
+      setting_value: {
+        maintenance_mode: false,
+        maintenance_message: "Portal is operating normally with all civic departments active.",
+        portal_status: "ONLINE"
+      },
+      updated_by: 1,
+      updated_at: "2026-02-15T10:00:00Z"
+    }
+  ];
+
+  const notifications = [
+    {
+      id: 1,
+      recipient_id: 1,
+      recipient_role: "ADMIN",
+      title: "New High Priority Complaint Submitted",
+      message: "Complaint GRV-2026-0002 on Station Approach Bridge marked as EMERGENCY requires review.",
+      type: "Complaint Submitted",
+      delivery_channel: "IN_APP",
+      delivery_status: "DELIVERED",
+      is_read: false,
+      metadata: { complaint_id: 2, tracking_id: "GRV-2026-0002" },
+      created_at: "2026-03-01T09:05:00Z"
+    },
+    {
+      id: 2,
+      recipient_id: 5,
+      recipient_role: "DEPARTMENT_OFFICER",
+      title: "Complaint Assigned: Streetlight Repair",
+      message: "Complaint GRV-2026-0004 assigned to you by Administrator.",
+      type: "Complaint Assigned",
+      delivery_channel: "IN_APP",
+      delivery_status: "DELIVERED",
+      is_read: false,
+      metadata: { complaint_id: 4, tracking_id: "GRV-2026-0004" },
+      created_at: "2026-02-28T09:31:00Z"
+    },
+    {
+      id: 3,
+      recipient_id: 6,
+      recipient_role: "CITIZEN",
+      title: "Complaint Received: GRV-2026-0001",
+      message: "Your grievance regarding garbage overflow has been registered and is pending verification.",
+      type: "Complaint Submitted",
+      delivery_channel: "EMAIL_SIMULATED",
+      delivery_status: "SIMULATED",
+      is_read: true,
+      metadata: { complaint_id: 1, tracking_id: "GRV-2026-0001" },
+      created_at: "2026-03-01T08:16:00Z"
+    },
+    {
+      id: 4,
+      recipient_id: 1,
+      recipient_role: "ADMIN",
+      title: "SLA Warning: Breach Detected",
+      message: "Complaint GRV-2026-0006 exceeded target SLA timeline of 12 hours.",
+      type: "SLA Warning",
+      delivery_channel: "IN_APP",
+      delivery_status: "DELIVERED",
+      is_read: false,
+      metadata: { complaint_id: 6, tracking_id: "GRV-2026-0006" },
+      created_at: "2026-02-25T08:00:00Z"
+    },
+    {
+      id: 5,
+      recipient_id: 8,
+      recipient_role: "CITIZEN",
+      title: "Grievance Resolved: GRV-2026-0007",
+      message: "Your complaint regarding construction debris at Shivaji Park has been resolved.",
+      type: "Complaint Resolved",
+      delivery_channel: "SMS_SIMULATED",
+      delivery_status: "SIMULATED",
+      is_read: true,
+      metadata: { complaint_id: 7, tracking_id: "GRV-2026-0007" },
+      created_at: "2026-02-27T17:05:00Z"
+    }
+  ];
+
+  return {
+    users,
+    departments,
+    officers,
+    complaints,
+    complaintHistory,
+    assignments,
+    publicServices,
+    serviceVersions,
+    governmentSchemes,
+    schemeVersions,
+    slaRules,
+    complaintSla,
+    escalations,
+    auditLogs,
+    platformSettings,
+    notifications
+  };
+}
