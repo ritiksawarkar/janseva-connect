@@ -1,7 +1,13 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-
+import path from "path";
+import authRoutes from "./routes/authRoutes.js";
+import complaintRoutes from "./routes/complaintRoutes.js";
+import citizenDashboardRoutes from "./routes/citizenDashboardRoutes.js";
+import complaintTrackingRoutes from "./routes/complaintTrackingRoutes.js";
+import complaintSupportRoutes from "./routes/complaintSupportRoutes.js";
+import nearbyComplaintRoutes from "./routes/nearbyComplaintRoutes.js";
 import serviceRoutes from "./routes/serviceRoutes.js";
 import schemeRoutes from "./routes/schemeRoutes.js";
 import eligibilityRoutes from "./routes/eligibilityRoutes.js";
@@ -12,74 +18,48 @@ dotenv.config();
 
 const app = express();
 
-// Configure CORS to permit local frontend development
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://localhost:3000",
-  "http://127.0.0.1:5173",
-  "http://127.0.0.1:5174"
-];
-
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, or postman)
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(null, true);
-    },
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
   })
 );
-
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Root welcome route (preserved from existing scaffold)
-app.get("/", (req, res) => {
+const uploadsPath = path.resolve(process.cwd(), "uploads");
+app.use("/uploads", express.static(uploadsPath));
+
+app.get("/", (_req, res) => {
   res.json({
     success: true,
     message: "Welcome to JanSeva Connect API",
     status: "Running",
-    module: "Public Services & Government Schemes",
+    modules: ["public-services", "government-schemes", "grievance-management"],
   });
 });
 
-// Health check endpoint (preserved from existing scaffold)
-app.get("/api/health", (req, res) => {
-  res.json({
-    success: true,
-    message: "Backend is healthy",
-  });
+app.get("/api/health", (_req, res) => {
+  res.json({ success: true, message: "Backend is healthy" });
 });
 
-// Member 2: Public Services & Schemes Module Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/complaints", complaintRoutes);
+app.use("/api/citizen", citizenDashboardRoutes);
+app.use("/api/tracking", complaintTrackingRoutes);
+app.use("/api/support", complaintSupportRoutes);
+app.use("/api/nearby", nearbyComplaintRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/schemes", schemeRoutes);
 app.use("/api/eligibility", eligibilityRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/stats", statsRoutes);
 
-// 404 Handler for undefined API routes
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: `API route ${req.method} ${req.originalUrl} not found.`,
-  });
-});
-
-// Centralized error handling middleware
-app.use((err, req, res, next) => {
-  console.error("Unhandled API Error:", err);
-  res.status(err.status || 500).json({
-    success: false,
-    message: err.message || "An unexpected internal server error occurred.",
-  });
+app.use((_req, res) => {
+  res.status(404).json({ success: false, message: "Route not found" });
 });
 
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log(`JanSeva Connect API running on port ${PORT}`);
 });

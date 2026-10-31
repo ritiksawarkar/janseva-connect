@@ -20,4 +20,9 @@ i18n.use(initReactI18next).init({
   },
 });
 
+export const changeLanguage = (lang) => {
+  localStorage.setItem("janseva_language", lang);
+  return i18n.changeLanguage(lang);
+};
+
 export default i18n;
