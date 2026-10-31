@@ -1,4 +1,4 @@
-import { pool } from "../config/db.js";
+import { pool, initializeDatabase } from "../config/db.js";
 
 export async function runSeeds() {
   const client = await pool.connect();
@@ -655,7 +655,8 @@ export async function runSeeds() {
 
 // Allow direct CLI invocation
 if (process.argv[1]?.endsWith("seed.js")) {
-  runSeeds()
+  initializeDatabase()
+    .then(() => runSeeds())
     .then(() => {
       console.log("Database seed complete.");
       process.exit(0);

@@ -1,4 +1,4 @@
-import { pool, query } from '../src/config/db.js';
+import { initializeDatabase, pool, query } from '../src/config/db.js';
 import { generateTrackingId } from '../src/services/trackingIdService.js';
 import { suggestDepartment } from '../src/services/departmentRoutingService.js';
 import { findNearbyComplaints } from '../src/services/nearbyComplaintService.js';
@@ -7,6 +7,7 @@ import { getComplaintHistory } from '../src/services/complaintHistoryService.js'
 import { createComplaint, trackComplaintByTrackingId, getCitizenDashboardData } from '../src/services/complaintService.js';
 
 async function runTests() {
+  await initializeDatabase();
   console.log('=== STARTING INTEGRATION TESTS FOR JANSEVA CONNECT CORE GRIEVANCE MODULE ===\n');
   let passed = 0;
   let failed = 0;
@@ -193,4 +194,3 @@ async function runTests() {
 }
 
 runTests();
-

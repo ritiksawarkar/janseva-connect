@@ -1,4 +1,4 @@
-import { pool } from "../config/db.js";
+import { pool, initializeDatabase } from "../config/db.js";
 
 export async function runMigrations() {
   const client = await pool.connect();
@@ -143,7 +143,8 @@ export async function runMigrations() {
 
 // Allow direct CLI invocation
 if (process.argv[1]?.endsWith("migrate.js")) {
-  runMigrations()
+  initializeDatabase()
+    .then(() => runMigrations())
     .then(() => {
       console.log("Database migration complete.");
       process.exit(0);

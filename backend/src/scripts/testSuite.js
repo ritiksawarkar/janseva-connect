@@ -1,6 +1,7 @@
-import { query } from "../config/db.js";
+import { initializeDatabase, query } from "../config/db.js";
 
 async function runTestSuite() {
+  await initializeDatabase();
   console.log("=================================================");
   console.log("   JANSEVA CONNECT - MEMBER 2 COMPREHENSIVE TEST");
   console.log("=================================================");

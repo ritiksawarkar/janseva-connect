@@ -3,14 +3,14 @@ export const requireRole = (...allowedRoles) => {
     if (!req.user) {
       return res.status(401).json({
         success: false,
-        message: 'Authentication required.'
+        message: "Authentication required."
       });
     }
 
     if (!allowedRoles.includes(req.user.role)) {
       return res.status(403).json({
         success: false,
-        message: `Access denied. Requires one of the following roles: ${allowedRoles.join(', ')}.`
+        message: `Access denied. Requires one of [${allowedRoles.join(", ")}] roles. Current role: ${req.user.role}.`
       });
     }
 
@@ -18,3 +18,6 @@ export const requireRole = (...allowedRoles) => {
   };
 };
 
+export const requireAdmin = requireRole("ADMIN");
+export const requireOfficer = requireRole("DEPARTMENT_OFFICER");
+export const requireCitizen = requireRole("CITIZEN");

@@ -147,13 +147,21 @@ export const LoginPage = () => {
           </button>
         </form>
 
-        <div className="text-center pt-2 border-t border-slate-100">
+        <div className="text-center pt-2 border-t border-slate-100 space-y-2">
           <p className="text-xs text-slate-500">
             Don't have an account?{' '}
             <Link to="/register" className="text-blue-600 hover:underline font-semibold">
               Register here
             </Link>
           </p>
+          <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <Link to="/officer/login" className="text-blue-600 hover:text-blue-800 font-semibold">
+              Officer Portal →
+            </Link>
+            <Link to="/admin/login" className="text-slate-700 hover:text-slate-900 font-semibold">
+              Admin Portal →
+            </Link>
+          </div>
         </div>
       </div>
     </div>
