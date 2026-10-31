@@ -9,10 +9,14 @@ const api = axios.create({
   }
 });
 
-// Intercept requests to add JWT token
+// Intercept requests to add JWT token (checks officerToken for officer routes or adminToken)
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("adminToken");
+    const isOfficerRequest = config.url && config.url.includes("/officer");
+    const officerToken = localStorage.getItem("officerToken");
+    const adminToken = localStorage.getItem("adminToken");
+    const token = isOfficerRequest ? (officerToken || adminToken) : (adminToken || officerToken);
+    
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,7 +30,11 @@ api.interceptors.response.use(
   (response) => response.data,
   (error) => {
     if (error.response && error.response.status === 401) {
-      if (!window.location.pathname.includes("/admin/login")) {
+      if (window.location.pathname.startsWith("/officer") && !window.location.pathname.includes("/officer/login")) {
+        localStorage.removeItem("officerToken");
+        localStorage.removeItem("officerUser");
+        window.location.href = "/officer/login?expired=true";
+      } else if (!window.location.pathname.includes("/admin/login") && !window.location.pathname.startsWith("/officer")) {
         localStorage.removeItem("adminToken");
         localStorage.removeItem("adminUser");
         window.location.href = "/admin/login?expired=true";
@@ -161,6 +169,49 @@ export const settingsApi = {
   getSettings: () => api.get("/admin/settings"),
   updateSettings: (payload) => api.put("/admin/settings", payload),
   getAuditLogs: (params) => api.get("/admin/audit-logs", { params })
+};
+
+// Department Officer Module APIs (Member 4)
+export const officerApi = {
+  // Dashboard
+  getStats: (params) => api.get("/officer/dashboard/stats", { params }),
+  getRecentAssignments: () => api.get("/officer/dashboard/recent-assignments"),
+  getPriorityComplaints: () => api.get("/officer/dashboard/priority-complaints"),
+  getSlaOverview: () => api.get("/officer/dashboard/sla-overview"),
+  getRecentActivity: () => api.get("/officer/dashboard/recent-activity"),
+
+  // Assigned Complaints
+  getComplaints: (params) => api.get("/officer/complaints", { params }),
+  getCompletedComplaints: (params) => api.get("/officer/complaints/completed", { params }),
+  getComplaintDetails: (id) => api.get(`/officer/complaints/${id}`),
+
+  // Assignments
+  getAssignments: () => api.get("/officer/assignments"),
+  getNewAssignments: () => api.get("/officer/assignments/new"),
+  acceptAssignment: (id, payload) => api.post(`/officer/assignments/${id}/accept`, payload),
+  acknowledgeAssignment: (id, payload) => api.post(`/officer/assignments/${id}/acknowledge`, payload),
+
+  // Work Progress Updates
+  addProgress: (complaintId, payload) => api.post(`/officer/complaints/${complaintId}/progress`, payload),
+  getProgressHistory: (complaintId) => api.get(`/officer/complaints/${complaintId}/progress`),
+  updateStatus: (complaintId, payload) => api.patch(`/officer/complaints/${complaintId}/status`, payload),
+
+  // Resolution & Evidence
+  submitResolution: (complaintId, payload) => api.post(`/officer/complaints/${complaintId}/resolution`, payload),
+  getResolutionDetails: (complaintId) => api.get(`/officer/complaints/${complaintId}/resolution`),
+  getEvidence: (complaintId) => api.get(`/officer/complaints/${complaintId}/evidence`),
+  uploadEvidence: (payload) => api.post("/officer/upload", payload),
+
+  // Notifications
+  getNotifications: (params) => api.get("/officer/notifications", { params }),
+  getUnreadCount: () => api.get("/officer/notifications/unread-count"),
+  markRead: (id) => api.patch(`/officer/notifications/${id}/read`),
+  markAllRead: () => api.patch("/officer/notifications/read-all"),
+
+  // Profile
+  getProfile: () => api.get("/officer/profile"),
+  updateProfile: (payload) => api.patch("/officer/profile", payload),
+  changePassword: (payload) => api.post("/officer/profile/change-password", payload)
 };
 
 export default api;
