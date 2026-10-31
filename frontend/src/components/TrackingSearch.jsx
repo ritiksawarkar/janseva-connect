@@ -50,3 +50,4 @@ export const TrackingSearch = ({ onSearch, initialValue = '', loading = false })
 };
 
 export default TrackingSearch;
+

@@ -27,3 +27,4 @@ export const SupporterCount = ({ count = 0, hasJoined = false, size = 'md' }) =>
 };
 
 export default SupporterCount;
+

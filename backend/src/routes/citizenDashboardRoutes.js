@@ -17,3 +17,4 @@ router.get('/nearby-complaints', getDashboardNearbyComplaints);
 router.get('/recent-activity', getRecentActivity);
 
 export default router;
+

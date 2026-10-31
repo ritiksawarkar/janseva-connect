@@ -33,3 +33,4 @@ export const CitizenLayout = () => {
 };
 
 export default CitizenLayout;
+

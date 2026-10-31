@@ -44,3 +44,4 @@ export default {
   logout,
   getCurrentUser
 };
+

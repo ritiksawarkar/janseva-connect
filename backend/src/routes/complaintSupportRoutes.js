@@ -16,3 +16,4 @@ router.get('/:id/supporters', optionalAuth, getSupportersList);
 router.get('/:id/support-status', optionalAuth, getSupportStatus);
 
 export default router;
+

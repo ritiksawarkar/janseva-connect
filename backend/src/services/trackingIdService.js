@@ -19,3 +19,4 @@ export const generateTrackingId = async (dbClient = null) => {
 export default {
   generateTrackingId
 };
+

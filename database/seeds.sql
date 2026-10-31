@@ -152,3 +152,4 @@ INSERT INTO notifications (user_id, complaint_id, title, message, type, is_read,
 (1, 1, 'Community Complaint Progress', 'Complaint JSC-2026-000001 that you joined is now IN_PROGRESS.', 'STATUS_CHANGE', FALSE, CURRENT_TIMESTAMP - INTERVAL '1 day'),
 (1, 5, 'Resolution Complete', 'Complaint JSC-2026-000005 that you supported has been successfully resolved!', 'RESOLVED', TRUE, CURRENT_TIMESTAMP - INTERVAL '6 hours')
 ON CONFLICT DO NOTHING;
+

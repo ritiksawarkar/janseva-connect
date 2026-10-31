@@ -105,3 +105,4 @@ export const ComplaintTimeline = ({ timeline = [], currentStatus = 'SUBMITTED' }
 };
 
 export default ComplaintTimeline;
+

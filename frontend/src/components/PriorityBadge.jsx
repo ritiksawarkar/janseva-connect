@@ -43,3 +43,4 @@ export const PriorityBadge = ({ priority }) => {
 };
 
 export default PriorityBadge;
+

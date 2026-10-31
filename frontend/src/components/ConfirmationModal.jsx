@@ -66,3 +66,4 @@ export const ConfirmationModal = ({
 };
 
 export default ConfirmationModal;
+

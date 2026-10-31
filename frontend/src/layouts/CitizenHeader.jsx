@@ -131,3 +131,4 @@ export const CitizenHeader = ({ onToggleSidebar }) => {
 };
 
 export default CitizenHeader;
+

@@ -140,3 +140,4 @@ export const suggestDepartment = async (category = '', title = '', description =
 export default {
   suggestDepartment
 };
+

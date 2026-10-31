@@ -216,3 +216,4 @@ export const CitizenSidebar = ({ isOpen, onClose }) => {
 };
 
 export default CitizenSidebar;
+

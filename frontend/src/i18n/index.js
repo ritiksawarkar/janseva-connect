@@ -27,3 +27,4 @@ export const changeLanguage = (lang) => {
 };
 
 export default i18n;
+

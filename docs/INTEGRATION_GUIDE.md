@@ -76,3 +76,4 @@ Alternative statuses supported across all tables:
 - Never commit `.env` or `node_modules`.
 - Always run `npm test` and `npm run test:e2e` in `backend` before opening a pull request into `main`.
 - Always verify frontend build with `npm run build` in `frontend`.
+

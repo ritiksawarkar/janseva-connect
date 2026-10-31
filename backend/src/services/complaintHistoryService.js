@@ -52,3 +52,4 @@ export const getComplaintHistory = async (complaintId, userRole = 'CITIZEN') => 
 export default {
   getComplaintHistory
 };
+

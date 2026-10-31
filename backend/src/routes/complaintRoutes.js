@@ -28,3 +28,4 @@ router.get('/:id', optionalAuth, getComplaint);
 router.patch('/:id', authenticate, updateComplaint);
 
 export default router;
+

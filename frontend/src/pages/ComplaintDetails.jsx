@@ -393,3 +393,4 @@ export const ComplaintDetails = () => {
 };
 
 export default ComplaintDetails;
+

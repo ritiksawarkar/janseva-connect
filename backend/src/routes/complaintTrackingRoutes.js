@@ -11,3 +11,4 @@ router.get('/track/:trackingId', optionalAuth, trackComplaint);
 router.get('/:id/history', optionalAuth, getHistoryTimeline);
 
 export default router;
+

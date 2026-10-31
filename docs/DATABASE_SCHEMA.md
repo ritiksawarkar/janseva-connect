@@ -142,3 +142,4 @@ Administrative dispatch linking complaints to departments and field officers (Me
 ## 2. Sequence
 `complaint_tracking_seq` starts with 1, increment 1.
 Used exclusively by `trackingIdService` to generate monotonic, unique IDs (`JSC-YYYY-000000`) atomically under concurrent transactions.
+

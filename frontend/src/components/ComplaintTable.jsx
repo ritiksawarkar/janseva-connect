@@ -108,3 +108,4 @@ export const ComplaintTable = ({ complaints = [], isJoinedView = false, onLeave 
 };
 
 export default ComplaintTable;
+

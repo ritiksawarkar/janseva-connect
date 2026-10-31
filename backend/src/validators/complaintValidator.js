@@ -24,3 +24,4 @@ export const updateComplaintSchema = z.object({
   landmark: z.string().trim().optional(),
   preferred_contact_method: z.enum(['IN_APP', 'EMAIL', 'SMS']).optional()
 });
+

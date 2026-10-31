@@ -98,3 +98,4 @@
 |---|---|---|
 | `/api/departments` | `GET` | List active departments (Sanitation, PWD, Electrical, Water, Drainage, Health, General) |
 | `/api/complaints/meta/categories` | `GET` | Standard categories and subcategories |
+

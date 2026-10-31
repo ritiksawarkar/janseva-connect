@@ -9,3 +9,4 @@ export const nearbySearchSchema = z.object({
   page: z.union([z.number(), z.string().regex(/^\d+$/).transform(Number)]).default(1),
   limit: z.union([z.number(), z.string().regex(/^\d+$/).transform(Number)]).default(10)
 });
+

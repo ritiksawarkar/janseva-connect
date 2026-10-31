@@ -148,3 +148,4 @@ CREATE INDEX IF NOT EXISTS idx_complaint_history_comp ON complaint_history(compl
 CREATE INDEX IF NOT EXISTS idx_attachments_comp ON attachments(complaint_id);
 CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id);
 CREATE INDEX IF NOT EXISTS idx_assignments_comp ON assignments(complaint_id);
+

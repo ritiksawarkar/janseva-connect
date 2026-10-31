@@ -13,3 +13,4 @@ router.post('/search', optionalAuth, searchNearbyComplaintsPost);
 router.get('/:id', optionalAuth, getNearbyComplaintDetails);
 
 export default router;
+

@@ -205,3 +205,4 @@ export const JoinedComplaints = () => {
 };
 
 export default JoinedComplaints;
+

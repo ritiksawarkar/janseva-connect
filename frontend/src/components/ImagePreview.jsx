@@ -63,3 +63,4 @@ export const ImagePreview = ({ src, alt = 'Attachment Preview', className = '' }
 };
 
 export default ImagePreview;
+

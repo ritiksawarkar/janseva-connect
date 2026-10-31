@@ -86,3 +86,4 @@ export const ComplaintCard = ({ complaint, isJoinedView = false, onLeave }) => {
 };
 
 export default ComplaintCard;
+

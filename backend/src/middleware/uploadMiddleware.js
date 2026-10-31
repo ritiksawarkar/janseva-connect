@@ -49,3 +49,4 @@ export const uploadComplaintAttachments = multer({
     files: 5 // Maximum 5 files
   }
 });
+
