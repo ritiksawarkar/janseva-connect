@@ -14,12 +14,13 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const url = config.url || "";
+    const path = (typeof window !== "undefined" && window.location && window.location.pathname) || "";
     let token = null;
 
-    if (url.includes("/officer")) {
-      token = localStorage.getItem("officerToken") || localStorage.getItem("adminToken") || localStorage.getItem("janseva_token");
-    } else if (url.includes("/admin")) {
-      token = localStorage.getItem("adminToken") || localStorage.getItem("officerToken") || localStorage.getItem("janseva_token");
+    if (url.includes("/officer") || path.startsWith("/officer")) {
+      token = localStorage.getItem("officerToken");
+    } else if (url.includes("/admin") || path.startsWith("/admin")) {
+      token = localStorage.getItem("adminToken");
     } else {
       token = localStorage.getItem("janseva_token") || localStorage.getItem("officerToken") || localStorage.getItem("adminToken");
     }

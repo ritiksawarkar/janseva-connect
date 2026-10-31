@@ -52,7 +52,13 @@ export const AuthProvider = ({ children }) => {
           setToken(null);
         }
       } else {
-        // Auto-login default demo citizen for seamless testing
+        const path = (typeof window !== 'undefined' && window.location && window.location.pathname) || '';
+        if (path.startsWith('/officer') || path.startsWith('/admin')) {
+          setLoading(false);
+          return;
+        }
+
+        // Auto-login default demo citizen for seamless testing on citizen routes
         try {
           const res = await authService.login('citizen@janseva.gov.in', 'Citizen@123');
           if (res && res.data && res.data.user) {
