@@ -1,41 +1,45 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
-function App() {
-  const [status, setStatus] = useState("Checking backend...");
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ServicesList from "./pages/ServicesList";
+import ServiceDetail from "./pages/ServiceDetail";
+import SchemesList from "./pages/SchemesList";
+import SchemeDetail from "./pages/SchemeDetail";
+import EligibilityChecker from "./pages/EligibilityChecker";
+import EligibilityResults from "./pages/EligibilityResults";
+import HelpFaq from "./pages/HelpFaq";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/health")
-      .then((response) => response.json())
-      .then((data) => {
-        setStatus(data.message);
-      })
-      .catch(() => {
-        setStatus("Backend connection failed");
-      });
-  }, []);
-
+export function App() {
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 max-w-lg w-full">
-        <h1 className="text-3xl font-bold text-slate-900">
-          JanSeva Connect
-        </h1>
-
-        <p className="text-slate-500 mt-2">
-          Accessible Public Services & Grievance Resolution Platform
-        </p>
-
-        <div className="mt-8 rounded-xl bg-slate-100 p-4">
-          <p className="font-semibold text-slate-800">
-            Backend Status
-          </p>
-          <p className="text-sm text-slate-600 mt-1">
-            {status}
-          </p>
-        </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900">
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<ServicesList />} />
+            <Route path="/services/:id" element={<ServiceDetail />} />
+            <Route path="/schemes" element={<SchemesList />} />
+            <Route path="/schemes/:id" element={<SchemeDetail />} />
+            <Route path="/eligibility-checker" element={<EligibilityChecker />} />
+            <Route path="/eligibility-results" element={<EligibilityResults />} />
+            <Route path="/help" element={<HelpFaq />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-    </main>
+    </Router>
   );
 }
 

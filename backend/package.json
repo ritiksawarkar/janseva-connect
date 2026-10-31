@@ -1,4 +1,3 @@
-
 {
   "name": "janseva-connect-backend",
   "version": "1.0.0",
@@ -6,7 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "migrate": "node src/scripts/migrate.js",
+    "seed": "node src/scripts/seed.js",
+    "test": "node src/scripts/testSuite.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.0",

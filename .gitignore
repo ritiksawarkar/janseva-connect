@@ -1,17 +1,7 @@
-# Dependencies
 node_modules/
-
-# Build files
-dist/
-
-# Environment variables
 .env
-.env.*
-!.env.example
-
-# Logs
-*.log
-npm-debug.log*
-
-# Editor
-.vscode/
+.env.local
+dist/
+build/
+coverage/
+.next/
