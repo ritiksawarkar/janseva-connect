@@ -33,6 +33,7 @@ export function OfficerAuthProvider({ children }) {
         }
       } catch (err) {
         console.warn("Officer session verification notice:", err.message);
+        // If profile fetch fails but token exists, do not aggressively wipe unless 401
         if (err && (err.status === 401 || err.statusCode === 401)) {
           logout();
         }
@@ -58,10 +59,10 @@ export function OfficerAuthProvider({ children }) {
           throw new Error("Access denied: Department Officer role required. Citizens and Admins should use their respective portals.");
         }
         const jwtToken = res.data.token;
-        setToken(jwtToken);
-        setOfficer(userData);
         localStorage.setItem("officerToken", jwtToken);
         localStorage.setItem("officerUser", JSON.stringify(userData));
+        setToken(jwtToken);
+        setOfficer(userData);
         return { success: true, user: userData };
       }
       throw new Error(res.message || "Officer login failed");
@@ -88,14 +89,16 @@ export function OfficerAuthProvider({ children }) {
     });
   };
 
+  const isAuthenticated = Boolean(
+    officer && (officer.role === "DEPARTMENT_OFFICER" || Boolean(localStorage.getItem("officerToken")))
+  );
+
   return (
     <OfficerAuthContext.Provider
       value={{
         officer,
         token,
-        isAuthenticated: Boolean(
-          officer && (officer.role === "DEPARTMENT_OFFICER" || Boolean(localStorage.getItem("officerToken")))
-        ),
+        isAuthenticated,
         isLoading,
         login,
         logout,
