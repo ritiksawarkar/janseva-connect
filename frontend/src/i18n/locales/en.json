@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "JanSeva Connect",
+    "tagline": "Accessible Public Services & Grievance Resolution Portal"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "myComplaints": "My Complaints",
+    "submitComplaint": "Register Grievance",
+    "nearbyComplaints": "Nearby Complaints",
+    "joinedComplaints": "Joined Complaints",
+    "trackComplaint": "Track Status",
+    "publicServices": "Public Services",
+    "governmentSchemes": "Government Schemes",
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "profile": "Profile"
+  },
+  "stats": {
+    "total": "Total Complaints",
+    "pending": "Pending",
+    "underVerification": "Under Verification",
+    "assigned": "Assigned",
+    "inProgress": "In Progress",
+    "resolutionSubmitted": "Resolution Submitted",
+    "resolved": "Resolved",
+    "joined": "Joined by Me"
+  },
+  "status": {
+    "SUBMITTED": "Submitted",
+    "UNDER_VERIFICATION": "Under Verification",
+    "VERIFIED": "Verified",
+    "ASSIGNED": "Assigned to Department",
+    "ACCEPTED": "Accepted by Officer",
+    "IN_PROGRESS": "Work In Progress",
+    "RESOLUTION_SUBMITTED": "Resolution Submitted",
+    "RESOLVED": "Resolved & Closed",
+    "REJECTED": "Rejected",
+    "NEEDS_INFORMATION": "Information Needed",
+    "REASSIGNED": "Reassigned",
+    "ESCALATED": "Escalated",
+    "REOPENED": "Reopened"
+  },
+  "priority": {
+    "LOW": "Low",
+    "MEDIUM": "Medium",
+    "HIGH": "High",
+    "EMERGENCY": "Emergency"
+  },
+  "actions": {
+    "submit": "Submit Grievance",
+    "join": "Support Complaint",
+    "joined": "Joined",
+    "leave": "Withdraw Support",
+    "viewDetails": "View Details",
+    "track": "Track",
+    "filter": "Filter",
+    "search": "Search",
+    "reset": "Reset",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "useGps": "Detect Current GPS Location",
+    "findNearby": "Check Nearby Complaints"
+  },
+  "community": {
+    "supporters": "Supporters",
+    "oneProblemOneComplaint": "One Problem → One Main Complaint → Multiple Supporting Citizens",
+    "similarNotice": "Similar active complaints were found near this location. You can support an existing complaint to resolve it faster or proceed with a new registration."
+  }
+}
