@@ -534,6 +534,136 @@ export async function getSeedData() {
       resolved_at: null,
       created_at: "2026-03-01T10:00:00Z",
       updated_at: "2026-03-01T10:00:00Z"
+    },
+    {
+      id: 11,
+      tracking_id: "GRV-2026-0011",
+      citizen_id: 6,
+      title: "Severe garbage accumulation blocking primary school sidewalk",
+      description: "Huge unsegregated pile of household waste dumped against the primary school boundary wall. Creates intense foul stench and stray dog hazard for children entering school in the morning.",
+      category: "Garbage",
+      location: "School Lane, Ward 4, Adjacent to Municipal Primary School",
+      latitude: 19.0768,
+      longitude: 72.8792,
+      evidence_urls: ["https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800"],
+      status: "ASSIGNED",
+      priority: "HIGH",
+      department_id: 1,
+      assigned_officer_id: 2,
+      verification_remarks: "Verified authentic through photo evidence. Urgent clearance needed before school opens tomorrow.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 24,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-03-01T10:30:00Z",
+      updated_at: "2026-03-01T11:00:00Z"
+    },
+    {
+      id: 12,
+      tracking_id: "GRV-2026-0012",
+      citizen_id: 7,
+      title: "Series of deep potholes creating severe traffic bottleneck near Sector 7 market",
+      description: "Multiple edge-to-edge potholes exceeding 10 inches depth on main commercial stretch. Heavy vehicular traffic slowed to single file, causing daily morning jams and risk of two-wheeler tipping.",
+      category: "Potholes",
+      location: "Sector 7 Commercial Main Road, Near Central Post Office",
+      latitude: 19.0835,
+      longitude: 72.8872,
+      evidence_urls: ["https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=800"],
+      status: "ACCEPTED",
+      priority: "MEDIUM",
+      department_id: 2,
+      assigned_officer_id: 3,
+      verification_remarks: "Verified. Assigned to PWD Sub-division road repair crew.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 18,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-28T11:00:00Z",
+      updated_at: "2026-03-01T08:30:00Z"
+    },
+    {
+      id: 13,
+      tracking_id: "GRV-2026-0013",
+      citizen_id: 8,
+      title: "High pressure potable water main pipe rupture flooding street",
+      description: "Underground 12-inch water distribution main cracked during morning pressurization. High volume clean drinking water gushing onto roadway and flooding local basement shops.",
+      category: "Water Leakage",
+      location: "Junction of Shivaji Marg and 3rd Cross, Near Jal Bhavan",
+      latitude: 19.0664,
+      longitude: 72.8655,
+      evidence_urls: ["https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=800"],
+      status: "IN_PROGRESS",
+      priority: "HIGH",
+      department_id: 3,
+      assigned_officer_id: 4,
+      verification_remarks: "Emergency pipeline verification confirmed. Valve isolation ordered.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 36,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-27T09:00:00Z",
+      updated_at: "2026-02-27T10:15:00Z"
+    },
+    {
+      id: 14,
+      tracking_id: "GRV-2026-0014",
+      citizen_id: 9,
+      title: "Overflowing open municipal garbage vat at Gandhi Chowk",
+      description: "Over 3 tonnes of mixed commercial and domestic waste overflowing beyond containment walls. Street dogs scattering bags across street.",
+      category: "Garbage",
+      location: "Chhatrapati Chowk, Ward 5 Market Perimeter",
+      latitude: 19.0745,
+      longitude: 72.8752,
+      evidence_urls: ["https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800"],
+      status: "RESOLUTION_SUBMITTED",
+      priority: "HIGH",
+      department_id: 1,
+      assigned_officer_id: 2,
+      verification_remarks: "Verified and assigned for immediate mechanized clearance.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 41,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: null,
+      created_at: "2026-02-26T08:00:00Z",
+      updated_at: "2026-02-28T17:00:00Z"
+    },
+    {
+      id: 15,
+      tracking_id: "GRV-2026-0015",
+      citizen_id: 6,
+      title: "Complete blackout along Lane 10 due to short circuit in control box",
+      description: "Severe sparking in main junction box caused all 8 streetlights along Lane 10 to extinguish. Entire residential road left without illumination.",
+      category: "Streetlight",
+      location: "Lane 10, Ganesh Nagar, Ward 8",
+      latitude: 19.0915,
+      longitude: 72.8912,
+      evidence_urls: ["https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=800"],
+      status: "RESOLVED",
+      priority: "LOW",
+      department_id: 4,
+      assigned_officer_id: 5,
+      verification_remarks: "Verified and assigned to electrical crew.",
+      rejection_reason: null,
+      info_request_reason: null,
+      is_overdue: false,
+      supporters_count: 15,
+      duplicate_warning: false,
+      similar_complaint_ids: [],
+      resolved_at: "2026-02-26T16:00:00Z",
+      created_at: "2026-02-23T14:00:00Z",
+      updated_at: "2026-02-26T16:00:00Z"
     }
   ];
 
@@ -600,6 +730,51 @@ export async function getSeedData() {
       changed_by: 2,
       remarks: "Truck load of debris lifted and playground cleared. Photo evidence recorded.",
       created_at: "2026-02-27T17:00:00Z"
+    },
+    {
+      id: 8,
+      complaint_id: 11,
+      old_status: "VERIFIED",
+      new_status: "ASSIGNED",
+      changed_by: 1,
+      remarks: "Assigned by Administrator to Sanitation Officer Rajesh Kumar with High Priority.",
+      created_at: "2026-03-01T11:00:00Z"
+    },
+    {
+      id: 9,
+      complaint_id: 12,
+      old_status: "ASSIGNED",
+      new_status: "ACCEPTED",
+      changed_by: 3,
+      remarks: "Assignment accepted by PWD Engineer Sunil Shinde. Road maintenance crew requisitioned.",
+      created_at: "2026-03-01T08:30:00Z"
+    },
+    {
+      id: 10,
+      complaint_id: 13,
+      old_status: "ACCEPTED",
+      new_status: "IN_PROGRESS",
+      changed_by: 4,
+      remarks: "Work started on site. Isolated supply sluice gate and began trench excavation.",
+      created_at: "2026-02-27T10:15:00Z"
+    },
+    {
+      id: 11,
+      complaint_id: 14,
+      old_status: "IN_PROGRESS",
+      new_status: "RESOLUTION_SUBMITTED",
+      changed_by: 2,
+      remarks: "Garbage clearance and site sanitation completed. Submitted before and after photographic evidence for closure review.",
+      created_at: "2026-02-28T17:00:00Z"
+    },
+    {
+      id: 12,
+      complaint_id: 15,
+      old_status: "RESOLUTION_SUBMITTED",
+      new_status: "RESOLVED",
+      changed_by: 1,
+      remarks: "Admin verified electrical work completion photos and sensor report. Complaint officially resolved.",
+      created_at: "2026-02-26T16:00:00Z"
     }
   ];
 
@@ -613,6 +788,7 @@ export async function getSeedData() {
       assignment_status: "ACTIVE",
       remarks: "Priority streetlight repair before weekend.",
       assigned_at: "2026-02-28T09:30:00Z",
+      accepted_at: null,
       reassigned_at: null
     },
     {
@@ -624,6 +800,7 @@ export async function getSeedData() {
       assignment_status: "ACTIVE",
       remarks: "Urgent desilting requested near school area.",
       assigned_at: "2026-02-26T13:00:00Z",
+      accepted_at: "2026-02-26T14:30:00Z",
       reassigned_at: null
     },
     {
@@ -635,6 +812,7 @@ export async function getSeedData() {
       assignment_status: "ACTIVE",
       remarks: "Escalated assignment to senior engineer.",
       assigned_at: "2026-02-24T08:00:00Z",
+      accepted_at: "2026-02-24T09:00:00Z",
       reassigned_at: null
     },
     {
@@ -646,6 +824,67 @@ export async function getSeedData() {
       assignment_status: "COMPLETED",
       remarks: "Debris removal action completed.",
       assigned_at: "2026-02-22T11:00:00Z",
+      accepted_at: "2026-02-22T11:30:00Z",
+      reassigned_at: null
+    },
+    {
+      id: 5,
+      complaint_id: 11,
+      department_id: 1,
+      officer_id: 2,
+      assigned_by: 1,
+      assignment_status: "ACTIVE",
+      remarks: "Clear garbage outside primary school before morning classes tomorrow.",
+      assigned_at: "2026-03-01T11:00:00Z",
+      accepted_at: null,
+      reassigned_at: null
+    },
+    {
+      id: 6,
+      complaint_id: 12,
+      department_id: 2,
+      officer_id: 3,
+      assigned_by: 1,
+      assignment_status: "ACTIVE",
+      remarks: "Deploy patch repair asphalt crew for high traffic market road.",
+      assigned_at: "2026-02-28T11:30:00Z",
+      accepted_at: "2026-03-01T08:30:00Z",
+      reassigned_at: null
+    },
+    {
+      id: 7,
+      complaint_id: 13,
+      department_id: 3,
+      officer_id: 4,
+      assigned_by: 1,
+      assignment_status: "ACTIVE",
+      remarks: "Urgent clean water distribution main rupture repair.",
+      assigned_at: "2026-02-27T09:30:00Z",
+      accepted_at: "2026-02-27T09:45:00Z",
+      reassigned_at: null
+    },
+    {
+      id: 8,
+      complaint_id: 14,
+      department_id: 1,
+      officer_id: 2,
+      assigned_by: 1,
+      assignment_status: "ACTIVE",
+      remarks: "Complete waste removal and chemical disinfection of vat.",
+      assigned_at: "2026-02-26T08:30:00Z",
+      accepted_at: "2026-02-26T09:00:00Z",
+      reassigned_at: null
+    },
+    {
+      id: 9,
+      complaint_id: 15,
+      department_id: 4,
+      officer_id: 5,
+      assigned_by: 1,
+      assignment_status: "COMPLETED",
+      remarks: "Replace circuit breaker and verify luminaires.",
+      assigned_at: "2026-02-23T14:30:00Z",
+      accepted_at: "2026-02-23T15:00:00Z",
       reassigned_at: null
     }
   ];
@@ -1241,6 +1480,129 @@ export async function getSeedData() {
       is_read: true,
       metadata: { complaint_id: 7, tracking_id: "GRV-2026-0007" },
       created_at: "2026-02-27T17:05:00Z"
+    },
+    {
+      id: 6,
+      recipient_id: 2,
+      recipient_role: "DEPARTMENT_OFFICER",
+      title: "New High Priority Assignment: Primary School Garbage",
+      message: "Complaint GRV-2026-0011 has been assigned to you. Action required before school opening.",
+      type: "New Complaint Assigned",
+      delivery_channel: "IN_APP",
+      delivery_status: "DELIVERED",
+      is_read: false,
+      metadata: { complaint_id: 11, tracking_id: "GRV-2026-0011" },
+      created_at: "2026-03-01T11:05:00Z"
+    },
+    {
+      id: 7,
+      recipient_id: 2,
+      recipient_role: "DEPARTMENT_OFFICER",
+      title: "SLA Warning: Breach Approaching",
+      message: "Complaint GRV-2026-0005 has reached 80% of SLA time limit. Immediate field update needed.",
+      type: "SLA Warning",
+      delivery_channel: "IN_APP",
+      delivery_status: "DELIVERED",
+      is_read: false,
+      metadata: { complaint_id: 5, tracking_id: "GRV-2026-0005" },
+      created_at: "2026-02-27T14:00:00Z"
+    },
+    {
+      id: 8,
+      recipient_id: 3,
+      recipient_role: "DEPARTMENT_OFFICER",
+      title: "Assignment Acknowledged: Sector 7 Potholes",
+      message: "You accepted assignment for GRV-2026-0012. Target completion: 72 hours.",
+      type: "Assignment Accepted",
+      delivery_channel: "IN_APP",
+      delivery_status: "DELIVERED",
+      is_read: true,
+      metadata: { complaint_id: 12, tracking_id: "GRV-2026-0012" },
+      created_at: "2026-03-01T08:35:00Z"
+    },
+    {
+      id: 9,
+      recipient_id: 5,
+      recipient_role: "DEPARTMENT_OFFICER",
+      title: "Resolution Approved & Closed: Streetlight Repair",
+      message: "Your submitted resolution for GRV-2026-0015 has been verified and approved by the Administrator.",
+      type: "Resolution Approved",
+      delivery_channel: "IN_APP",
+      delivery_status: "DELIVERED",
+      is_read: true,
+      metadata: { complaint_id: 15, tracking_id: "GRV-2026-0015" },
+      created_at: "2026-02-26T16:05:00Z"
+    }
+  ];
+
+  const resolutions = [
+    {
+      id: 1,
+      complaint_id: 14,
+      officer_id: 2,
+      resolution_title: "Mechanized waste lift, perimeter sanitization & twin bin installation",
+      resolution_description: "Deployed 2 hydraulic mini compactor trucks and 6 sanitation workers. Completely cleared 3.8 tonnes of accumulated commercial waste. Performed sodium hypochlorite disinfection wash across 150 sq meters. Installed 2 covered twin waste receptacles with segregated wet/dry signage.",
+      work_completed_at: "2026-02-28T16:30:00Z",
+      officer_remarks: "Sanitary condition fully restored. Commercial trade merchants committee notified regarding scheduled morning collection timing.",
+      status: "SUBMITTED",
+      submitted_at: "2026-02-28T17:00:00Z",
+      reviewed_by: null,
+      reviewed_at: null,
+      review_remarks: null,
+      created_at: "2026-02-28T17:00:00Z",
+      updated_at: "2026-02-28T17:00:00Z"
+    },
+    {
+      id: 2,
+      complaint_id: 15,
+      officer_id: 5,
+      resolution_title: "Feeder junction breaker replacement & 8 LED street luminaire restoration",
+      resolution_description: "Investigated feeder panel box 4. Identified blown 63A main fuse due to water ingress during recent rain. Replaced with weatherproof IP65 rated miniature circuit breaker. Tested continuous load for 90 minutes. All 8 LED luminaires across Lane 10 confirmed operational at 100% illumination.",
+      work_completed_at: "2026-02-26T15:00:00Z",
+      officer_remarks: "Street lighting restored to full working capacity. Lux measurement reading: 28 lux.",
+      status: "APPROVED",
+      submitted_at: "2026-02-26T15:30:00Z",
+      reviewed_by: 1,
+      reviewed_at: "2026-02-26T16:00:00Z",
+      review_remarks: "Work verified authentic with timestamped site photos and electrical sensor telemetry. Complaint closed.",
+      created_at: "2026-02-26T15:30:00Z",
+      updated_at: "2026-02-26T16:00:00Z"
+    }
+  ];
+
+  const resolutionEvidence = [
+    {
+      id: 1,
+      resolution_id: 1,
+      complaint_id: 14,
+      file_name: "gandhi_chowk_vat_before_work.jpg",
+      storage_key: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800",
+      mime_type: "image/jpeg",
+      file_size: 1450200,
+      evidence_type: "BEFORE",
+      uploaded_at: "2026-02-28T16:45:00Z"
+    },
+    {
+      id: 2,
+      resolution_id: 1,
+      complaint_id: 14,
+      file_name: "gandhi_chowk_cleaned_after_work.jpg",
+      storage_key: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800",
+      mime_type: "image/jpeg",
+      file_size: 1623400,
+      evidence_type: "AFTER",
+      uploaded_at: "2026-02-28T16:50:00Z"
+    },
+    {
+      id: 3,
+      resolution_id: 2,
+      complaint_id: 15,
+      file_name: "lane10_panel_repaired_after.jpg",
+      storage_key: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=800",
+      mime_type: "image/jpeg",
+      file_size: 980400,
+      evidence_type: "AFTER",
+      uploaded_at: "2026-02-26T15:20:00Z"
     }
   ];
 
@@ -1260,6 +1622,8 @@ export async function getSeedData() {
     escalations,
     auditLogs,
     platformSettings,
-    notifications
+    notifications,
+    resolutions,
+    resolutionEvidence
   };
 }

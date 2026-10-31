@@ -248,6 +248,37 @@ CREATE TABLE IF NOT EXISTS notifications (
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
+-- 17. Resolutions Table (Submitted by Department Officers for Verification)
+CREATE TABLE IF NOT EXISTS resolutions (
+    id SERIAL PRIMARY KEY,
+    complaint_id INTEGER NOT NULL REFERENCES complaints(id) ON DELETE CASCADE,
+    officer_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    resolution_title VARCHAR(255) NOT NULL,
+    resolution_description TEXT NOT NULL,
+    work_completed_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    officer_remarks TEXT,
+    status VARCHAR(50) DEFAULT 'SUBMITTED', -- 'SUBMITTED', 'APPROVED', 'REJECTED'
+    submitted_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    reviewed_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    reviewed_at TIMESTAMPTZ,
+    review_remarks TEXT,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 18. Resolution Evidence Table (Before/After photographs and supporting docs)
+CREATE TABLE IF NOT EXISTS resolution_evidence (
+    id SERIAL PRIMARY KEY,
+    resolution_id INTEGER NOT NULL REFERENCES resolutions(id) ON DELETE CASCADE,
+    complaint_id INTEGER NOT NULL REFERENCES complaints(id) ON DELETE CASCADE,
+    file_name VARCHAR(255) NOT NULL,
+    storage_key TEXT NOT NULL, -- URL or local path
+    mime_type VARCHAR(100) NOT NULL,
+    file_size INTEGER NOT NULL,
+    evidence_type VARCHAR(50) NOT NULL DEFAULT 'AFTER', -- 'BEFORE', 'AFTER', 'SUPPORTING'
+    uploaded_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Indexes for high performance
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
@@ -260,3 +291,6 @@ CREATE INDEX IF NOT EXISTS idx_complaints_created_at ON complaints(created_at);
 CREATE INDEX IF NOT EXISTS idx_assignments_complaint ON assignments(complaint_id);
 CREATE INDEX IF NOT EXISTS idx_audit_logs_created ON audit_logs(created_at);
 CREATE INDEX IF NOT EXISTS idx_notifications_recipient ON notifications(recipient_id);
+CREATE INDEX IF NOT EXISTS idx_resolutions_complaint ON resolutions(complaint_id);
+CREATE INDEX IF NOT EXISTS idx_resolutions_officer ON resolutions(officer_id);
+CREATE INDEX IF NOT EXISTS idx_evidence_resolution ON resolution_evidence(resolution_id);

@@ -34,12 +34,29 @@ export function authenticate(req, res, next) {
           message: "Account is inactive or suspended. Contact administration."
         });
       }
+      let officerInfo = null;
+      if (user.role === "DEPARTMENT_OFFICER" && store.officers) {
+        const officer = store.officers.find((o) => o.user_id === user.id);
+        if (officer) {
+          const dept = store.departments ? store.departments.find((d) => d.id === officer.department_id) : null;
+          officerInfo = {
+            officer_id: officer.id,
+            employee_id: officer.employee_id,
+            department_id: officer.department_id,
+            department_name: dept ? dept.name : "Civic Services",
+            department_code: dept ? dept.code : "GEN",
+            designation: officer.designation
+          };
+        }
+      }
+
       req.user = {
         id: user.id,
         email: user.email,
         full_name: user.full_name,
         role: user.role,
-        status: user.status
+        status: user.status,
+        ...(officerInfo || {})
       };
     } else {
       req.user = decoded;

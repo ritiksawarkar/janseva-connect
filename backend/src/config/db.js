@@ -35,7 +35,9 @@ async function initMemoryStore() {
       escalations: [...data.escalations],
       audit_logs: [...data.auditLogs],
       platform_settings: [...data.platformSettings],
-      notifications: [...data.notifications]
+      notifications: [...data.notifications],
+      resolutions: [...(data.resolutions || [])],
+      resolution_evidence: [...(data.resolutionEvidence || [])]
     };
   }
   return memoryStore;

@@ -51,6 +51,22 @@ export async function login(req, res) {
     { expiresIn: JWT_EXPIRES_IN }
   );
 
+  let officerInfo = null;
+  if (user.role === "DEPARTMENT_OFFICER" && store.officers) {
+    const officer = store.officers.find((o) => o.user_id === user.id);
+    if (officer) {
+      const dept = store.departments ? store.departments.find((d) => d.id === officer.department_id) : null;
+      officerInfo = {
+        officer_id: officer.id,
+        employee_id: officer.employee_id,
+        department_id: officer.department_id,
+        department_name: dept ? dept.name : "Civic Services",
+        department_code: dept ? dept.code : "GEN",
+        designation: officer.designation
+      };
+    }
+  }
+
   return res.json({
     success: true,
     message: "Login successful.",
@@ -62,7 +78,8 @@ export async function login(req, res) {
         email: user.email,
         phone: user.phone,
         role: user.role,
-        status: user.status
+        status: user.status,
+        ...(officerInfo || {})
       }
     }
   });
@@ -79,6 +96,22 @@ export async function getProfile(req, res) {
     });
   }
 
+  let officerInfo = null;
+  if (user.role === "DEPARTMENT_OFFICER" && store.officers) {
+    const officer = store.officers.find((o) => o.user_id === user.id);
+    if (officer) {
+      const dept = store.departments ? store.departments.find((d) => d.id === officer.department_id) : null;
+      officerInfo = {
+        officer_id: officer.id,
+        employee_id: officer.employee_id,
+        department_id: officer.department_id,
+        department_name: dept ? dept.name : "Civic Services",
+        department_code: dept ? dept.code : "GEN",
+        designation: officer.designation
+      };
+    }
+  }
+
   return res.json({
     success: true,
     data: {
@@ -88,7 +121,8 @@ export async function getProfile(req, res) {
       phone: user.phone,
       role: user.role,
       status: user.status,
-      created_at: user.created_at
+      created_at: user.created_at,
+      ...(officerInfo || {})
     }
   });
 }

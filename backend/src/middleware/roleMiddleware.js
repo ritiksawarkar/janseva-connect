@@ -19,3 +19,4 @@ export function requireRole(...allowedRoles) {
 }
 
 export const requireAdmin = requireRole("ADMIN");
+export const requireOfficer = requireRole("DEPARTMENT_OFFICER");
